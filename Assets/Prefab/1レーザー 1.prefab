@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4041660145002322}
   - component: {fileID: 212599641092150790}
-  - component: {fileID: 114969378900958148}
   - component: {fileID: 567833814}
   - component: {fileID: 8778061655884711610}
   - component: {fileID: 714055147588590047}
@@ -87,18 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114969378900958148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1094552284664728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c822cde766d4414c9335640406e5c03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &567833814
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,7 +132,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 7542869633793619406}
-  viewIdField: 2
+  viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!50 &714055147588590047
@@ -196,7 +183,6 @@ GameObject:
   - component: {fileID: 4884445432026792}
   - component: {fileID: 212306377393556872}
   - component: {fileID: 95047143349842856}
-  - component: {fileID: 114784953348443064}
   - component: {fileID: 61040389516961010}
   m_Layer: 13
   m_Name: "1\u30EC\u30FC\u30B6\u30FC"
@@ -279,7 +265,7 @@ Animator:
   m_GameObject: {fileID: 1611315378846248}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 01f41600b5d399d4da465f2c00825c4e, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -288,18 +274,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114784953348443064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611315378846248}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c822cde766d4414c9335640406e5c03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &61040389516961010
 BoxCollider2D:
   m_ObjectHideFlags: 0

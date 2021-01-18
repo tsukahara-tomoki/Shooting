@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 58740423680711112}
   - component: {fileID: 108642997180920419}
   - component: {fileID: 6247378609024872543}
-  - component: {fileID: -7233392875226512114}
   - component: {fileID: 414559621}
-  m_Layer: 13
+  m_Layer: 8
   m_Name: 1PBullet 1
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -32,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1951454041230550}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.727343, y: -6.055027, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -163,19 +162,6 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &-7233392875226512114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951454041230550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a52c462d452b7254f89c7e813eed5959, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_speed: 1
 --- !u!114 &414559621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +171,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1951454041230550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a52c462d452b7254f89c7e813eed5959, type: 3}
+  m_Script: {fileID: 11500000, guid: 854de9ab903b721478298925ddbb11d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 1
+  player: {fileID: 0}

@@ -1,0 +1,236 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+/// <summary>
+/// シューティングゲームの自機を操作するためのコンポーネント
+/// </summary>
+public class PlayerController : MonoBehaviour
+{
+    /// <summary>プレイヤーの移動速度</summary>
+    [SerializeField] float m_moveSpeed = 5f;
+    /// <summary>弾のプレハブ</summary>
+    [SerializeField] GameObject m_bulletPrefab;
+    [SerializeField] GameObject m_bulletPrefab2;
+    [SerializeField] GameObject m_laserPrefab;
+    /// <summary>弾の発射位置</summary>
+    [SerializeField] Transform[] m_muzzle = new Transform[8];
+    //[SerializeField] Transform m_muzzle1;
+    //[SerializeField] Transform m_muzzle2;
+    //[SerializeField] Transform m_muzzle3;
+    //[SerializeField] Transform m_muzzle4;
+    //[SerializeField] Transform m_muzzle5;
+    //[SerializeField] Transform m_muzzle6;
+    //[SerializeField] Transform m_muzzle7;
+    //[SerializeField] Transform m_muzzle8;
+    [SerializeField] GameObject m_explosionEffect;
+    [SerializeField] bool m_godMode;    // ← このメンバ変数を追加する
+    //bool lasernow = false;
+    //bool laserwait = false;
+    //bool ammunition = false;
+    //bool fire = true;
+    readonly Vector3[] pos = new Vector3[60];
+    Vector3 pos1;
+    /// <summary>タイマー</summary>
+    //float m_timer;
+    //float m_timer1;
+    //float m_timer2;
+    //float m_timer3;
+    [SerializeField] bool moving = true;
+    [SerializeField] int m_ammunitionTime = 1;
+    [SerializeField] GameObject nextObject;
+    AudioSource m_audio;
+    Rigidbody2D m_rb2d;
+
+    [SerializeField] int m_delay;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        m_rb2d = GetComponent<Rigidbody2D>();
+        m_audio = GetComponent<AudioSource>();
+        if(nextObject)initialize();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Vector2 dir;
+        float h;
+        float v;
+        // 自機を移動させる]
+        //if (!lasernow)
+        {
+            h = Input.GetAxisRaw("Horizontal");   // 垂直方向の入力を取得する
+            v = Input.GetAxisRaw("Vertical");     // 水平方向の入力を取得する
+            dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction) 
+            m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
+                                                 //pos1 = pos;
+
+            // 左クリックまたは左 Ctrl で弾を発射する（単発）
+            if (Input.GetButton("Fire1"))
+            {
+                //if (this.GetComponentsInChildren<BulletController>().Length < m_bulletLimit)    // 画面内の弾数を制限する
+                {
+                    //if (fire)
+                    //{
+                    //    Fire();
+                    //    fire = false;
+                    //    m_timer2 = 0f;   // タイマーをリセットする
+                    //}
+                    Fire();
+                }
+            }
+
+            //m_timer2 += Time.deltaTime;
+            //if (m_timer2 > 0.5)    // 待つ
+            //{
+            //    fire = true;
+            //}
+            // 右クリックまたは左 Alt で弾を発射する（散弾）
+            if (Input.GetButton("Fire2"))
+            {
+                //if (fire)
+                //{
+                //    Shot();
+                //    fire = false;
+                //    m_timer2 = 0f;   // タイマーをリセットする
+                //}
+                Shot();
+            }
+        }
+        //else
+        //{
+        //    h = 0;
+        //    v = 0;
+        //    dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction) 
+        //    m_rb2d.velocity = dir * m_moveSpeed;
+        //}
+
+        //m_timer += Time.deltaTime;
+        //if (m_timer > m_ammunitionTime)    // 待つ
+        //{
+        //    ammunition = false;
+        //    m_timer = 0f;   // タイマーをリセットする
+        //}
+        //m_timer3 += Time.deltaTime;
+        //if (m_timer3 > 2)    // 待つ
+        //{
+        //    lasernow = false;
+        //    m_timer3 = 0f;   // タイマーをリセットする
+        //}
+        //if (Input.GetButton("Fire3"))
+        //{
+
+        //    //if (fire)
+        //    //{
+        //    //    lasernow = true;
+        //    //    laserwait = true;
+        //    //    //Fire3();
+        //    //    fire = false;
+        //    //    m_timer3 = 0f;   // タイマーをリセットする
+        //    //}
+
+
+        //}
+        //if (laserwait)
+        //{
+        //    LaserFire();
+        //}
+        if (nextObject)
+        {
+            if (pos[0] != transform.position)
+            {
+                buffer();
+                moving = true;
+                //if (lasernow)
+                //{
+                //    moving = false;
+                //}
+                O optionController = nextObject.GetComponent<O>();
+                optionController.move(pos[m_delay], moving);
+                
+                //buffer();
+            }
+            else
+            {
+                moving = false;
+                O optionController = nextObject.GetComponent<O>();
+                optionController.move(pos[m_delay], moving);
+            }
+        }
+    }
+    /// <summary>
+    /// 弾を発射して、発射音を鳴らす
+    /// </summary>
+    void Fire()
+    {
+        if (m_bulletPrefab) // m_bulletPrefab にプレハブが設定されている時
+        {
+            GameObject go = Instantiate(m_bulletPrefab, m_muzzle[0].position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+            go.transform.SetParent(this.transform);
+            //m_audio.Play();
+        }
+    }
+    void Shot()
+    {
+        GameObject go;
+        if (m_bulletPrefab2) // m_bulletPrefab にプレハブが設定されている時
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                go = Instantiate(m_bulletPrefab2, m_muzzle[i].position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+                go.transform.SetParent(this.transform);
+            }
+            //GameObject go = Instantiate(m_bulletPrefab2, m_muzzle1.position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+            //go.transform.SetParent(this.transform);
+            //go = Instantiate(m_bulletPrefab2, m_muzzle2.position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+            //go.transform.SetParent(this.transform);
+            //go = Instantiate(m_bulletPrefab2, m_muzzle3.position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+            //go.transform.SetParent(this.transform);
+            //go = Instantiate(m_bulletPrefab2, m_muzzle4.position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+            //go.transform.SetParent(this.transform);
+            //go = Instantiate(m_bulletPrefab2, m_muzzle5.position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+            //go.transform.SetParent(this.transform);
+            //go = Instantiate(m_bulletPrefab2, m_muzzle6.position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+            //go.transform.SetParent(this.transform);
+            //go = Instantiate(m_bulletPrefab2, m_muzzle7.position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+            //go.transform.SetParent(this.transform);
+            //go = Instantiate(m_bulletPrefab2, m_muzzle8.position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+            //go.transform.SetParent(this.transform);
+            //m_audio.Play()
+
+        }
+    }
+    //void LaserFire()
+    //{
+
+    //    if (m_laserPrefab) // m_bulletPrefab にプレハブが設定されている時
+    //    {
+    //        //if (m_timer3 > 1)
+    //        //{
+    //        //    GameObject go = Instantiate(m_laserPrefab, m_muzzle[0].position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+    //        //    go.transform.SetParent(this.transform);
+    //        //    //m_audio.Play();
+    //        //    laserwait = false;
+    //        //}
+
+    //    }
+    //}
+    void initialize()
+    {
+        for (int i = 59; i >= 0; i--)
+        {
+            pos[i] = transform.position;
+        }
+    }
+    void buffer()
+    {
+        for (int i = 59; i > 0; i--)
+        {
+            pos[i] = pos[i - 1];
+        }
+        pos[0] = transform.position;
+    }
+}
