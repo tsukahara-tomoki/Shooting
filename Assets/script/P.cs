@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-/// <summary>
-/// シューティングゲームの自機を操作するためのコンポーネント
-/// </summary>
-public class PlayerController : MonoBehaviour
+public class P : MonoBehaviour
 {
     /// <summary>プレイヤーの移動速度</summary>
     [SerializeField] float m_moveSpeed = 5f;
@@ -50,7 +46,7 @@ public class PlayerController : MonoBehaviour
     {
         m_rb2d = GetComponent<Rigidbody2D>();
         m_audio = GetComponent<AudioSource>();
-        if(nextObject)initialize();
+        if (nextObject) initialize();
     }
 
     // Update is called once per frame
@@ -148,16 +144,16 @@ public class PlayerController : MonoBehaviour
                 //{
                 //    moving = false;
                 //}
-                O optionController = nextObject.GetComponent<O>();
-                optionController.move(pos[m_delay], moving);
-                
+                OptionController optionController = nextObject.GetComponent<OptionController>();
+                optionController.Move(pos[m_delay], moving);
+
                 //buffer();
             }
             else
             {
                 moving = false;
-                O optionController = nextObject.GetComponent<O>();
-                optionController.move(pos[m_delay], moving);
+                OptionController optionController = nextObject.GetComponent<OptionController>();
+                optionController.Move(pos[m_delay], moving);
             }
         }
     }
@@ -234,3 +230,4 @@ public class PlayerController : MonoBehaviour
         pos[0] = transform.position;
     }
 }
+
