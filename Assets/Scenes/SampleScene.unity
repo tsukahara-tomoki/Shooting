@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &52963471 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4188039465337996, guid: d2d6816f42574f04abdcf3057ccf4f24,
+    type: 3}
+  m_PrefabInstance: {fileID: 968434913}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &253278045
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +343,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 10
+  m_bulletPrefab: {fileID: 1341015586608052, guid: 19082e9109732cd42b2a979a1428fd48,
+    type: 3}
+  m_muzzle:
+  - {fileID: 921870998}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   nextObject: {fileID: 0}
   m_delay: 6
 --- !u!114 &369904186
@@ -370,6 +387,12 @@ MonoBehaviour:
   m_ammunitionTime: 1
   nextObject: {fileID: 0}
   m_delay: 20
+--- !u!4 &476263170 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6167676824448030046, guid: e012a139682db664d90fcd0ed888baca,
+    type: 3}
+  m_PrefabInstance: {fileID: 2136064183}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &477858978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3643998584245967855, guid: d2d6816f42574f04abdcf3057ccf4f24,
@@ -459,6 +482,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &529113193 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6167676824448030046, guid: e012a139682db664d90fcd0ed888baca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1136833389}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &533672007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -528,6 +557,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea0a970b07672a44899fe36456457d07, type: 3}
+--- !u!4 &567831535 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6167676824448030046, guid: e012a139682db664d90fcd0ed888baca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1221204412}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &571012978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3643998584081883742, guid: d2d6816f42574f04abdcf3057ccf4f24,
@@ -775,6 +810,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 10
+  m_bulletPrefab: {fileID: 1341015586608052, guid: 19082e9109732cd42b2a979a1428fd48,
+    type: 3}
+  m_muzzle:
+  - {fileID: 529113193}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   nextObject: {fileID: 2083262777}
   m_delay: 6
 --- !u!114 &849257749
@@ -808,6 +854,12 @@ MonoBehaviour:
   m_ammunitionTime: 1
   nextObject: {fileID: 2083262777}
   m_delay: 20
+--- !u!4 &921870998 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6167676824448030046, guid: e012a139682db664d90fcd0ed888baca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1526584571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &927167058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -935,7 +987,7 @@ PrefabInstance:
     - target: {fileID: 959518391, guid: d2d6816f42574f04abdcf3057ccf4f24, type: 3}
       propertyPath: m_muzzle.Array.data[0]
       value: 
-      objectReference: {fileID: 1054565654}
+      objectReference: {fileID: 52963471}
     - target: {fileID: 959518391, guid: d2d6816f42574f04abdcf3057ccf4f24, type: 3}
       propertyPath: m_muzzle.Array.data[1]
       value: 
@@ -1717,6 +1769,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 10
+  m_bulletPrefab: {fileID: 1341015586608052, guid: 19082e9109732cd42b2a979a1428fd48,
+    type: 3}
+  m_muzzle:
+  - {fileID: 476263170}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   nextObject: {fileID: 849257742}
   m_delay: 6
 --- !u!114 &1445263125
@@ -2185,6 +2248,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 10
+  m_bulletPrefab: {fileID: 1341015586608052, guid: 19082e9109732cd42b2a979a1428fd48,
+    type: 3}
+  m_muzzle:
+  - {fileID: 567831535}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   nextObject: {fileID: 369904179}
   m_delay: 6
 --- !u!114 &2083262784

@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
 {
     /// <summary>プレイヤーの移動速度</summary>
     [SerializeField] float m_moveSpeed = 5f;
+    /// <summary>弾のプレハブ</summary>
+    [SerializeField] GameObject m_bulletPrefab;
+    [SerializeField] Transform[] m_muzzle = new Transform[8];
     [SerializeField] Vector3[] pos = new Vector3[60];
     Vector3 pos1;
     private int i = 0;
@@ -17,6 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject nextObject;
     AudioSource m_audio;
     Rigidbody2D m_rb2d;
+    float fireTimer = 0;
+    bool fireDelay = false;
 
     [SerializeField] int m_delay = 30;
 
@@ -41,6 +46,20 @@ public class PlayerController : MonoBehaviour
             v = Input.GetAxisRaw("Vertical");     // 水平方向の入力を取得する
             dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction) 
             m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
+            // 左クリックまたは左 Ctrl で弾を発射する（単発）
+            if (Input.GetButton("Fire1"))
+            {
+                //if (this.GetComponentsInChildren<BulletController>().Length < m_bulletLimit)    // 画面内の弾数を制限する
+                {
+                    if (!fireDelay)
+                    {
+                        Fire();
+                        fireDelay = true;
+                        fireTimer = 0f;   // タイマーをリセットする
+                    }
+                    //Fire();
+                }
+            }
             if (nextObject)
             {
 
@@ -65,7 +84,21 @@ public class PlayerController : MonoBehaviour
 
             }
         }
+        fireTimer += Time.deltaTime;
+        if (fireTimer > 0.3)    // 待つ
+        {
+            fireDelay = false;
+        }
 
+    }
+    void Fire()
+    {
+        if (m_bulletPrefab) // m_bulletPrefab にプレハブが設定されている時
+        {
+            GameObject go = Instantiate(m_bulletPrefab, m_muzzle[0].position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+            go.transform.SetParent(this.transform);
+            //m_audio.Play();
+        }
     }
     void Initialize()
     {
