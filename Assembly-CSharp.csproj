@@ -304,10 +304,11 @@
     <Compile Include="Assets\script\BulletController.cs" />
     <Compile Include="Assets\script\DestroyerController.cs" />
     <Compile Include="Assets\script\EnemyBulletController.cs" />
-    <Compile Include="Assets\script\New Folder\O.cs" />
-    <Compile Include="Assets\script\OptionController.cs" />
+    <Compile Include="Assets\script\New Folder\OptionController.cs" />
+    <Compile Include="Assets\script\New Folder\PlayerController.cs" />
+    <Compile Include="Assets\script\O.cs" />
     <Compile Include="Assets\script\OwnmachineController.cs" />
-    <Compile Include="Assets\script\PlayerController.cs" />
+    <Compile Include="Assets\script\P.cs" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
     <None Include="Assets\Photon\PhotonUtilities\PackObject\_GeneratedPackExtensions\PackObject Extensions.txt" />

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OptionController : MonoBehaviour
+public class O : MonoBehaviour
 {
     /// <summary>プレイヤーの移動速度</summary>
     [SerializeField] float m_moveSpeed = 10f;
@@ -136,14 +136,14 @@ public class OptionController : MonoBehaviour
                 //    moving = false;
                 //}
                 OptionController optionController = nextObject.GetComponent<OptionController>();
-                optionController.move(pos[m_delay], moving);
+                optionController.Move(pos[m_delay], moving);
                 Buffer();
             }
             else
             {
                 moving = false;
                 OptionController optionController = nextObject.GetComponent<OptionController>();
-                optionController.move(pos[m_delay], moving);
+                optionController.Move(pos[m_delay], moving);
                 
             }
         }

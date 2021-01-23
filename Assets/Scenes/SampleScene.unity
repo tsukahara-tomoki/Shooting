@@ -121,12 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &78201135 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6167676822928727655, guid: e012a139682db664d90fcd0ed888baca,
-    type: 3}
-  m_PrefabInstance: {fileID: 2136064183}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &253278045
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveSpeed: 10
   nextObject: {fileID: 0}
-  m_delay: 20
+  m_delay: 6
 --- !u!114 &369904186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,11 +352,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 10
-  m_bulletPrefab: {fileID: 1341015586608052, guid: 19082e9109732cd42b2a979a1428fd48,
-    type: 3}
+  m_bulletPrefab: {fileID: 0}
   m_bulletPrefab2: {fileID: 0}
   m_laserPrefab: {fileID: 0}
-  m_muzzle: {fileID: 643737679}
+  m_muzzle: {fileID: 0}
   m_muzzle1: {fileID: 0}
   m_muzzle2: {fileID: 0}
   m_muzzle3: {fileID: 0}
@@ -377,12 +370,6 @@ MonoBehaviour:
   m_ammunitionTime: 1
   nextObject: {fileID: 0}
   m_delay: 20
---- !u!4 &460595001 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6167676822928727655, guid: e012a139682db664d90fcd0ed888baca,
-    type: 3}
-  m_PrefabInstance: {fileID: 1221204412}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &477858978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3643998584245967855, guid: d2d6816f42574f04abdcf3057ccf4f24,
@@ -546,12 +533,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3643998584081883742, guid: d2d6816f42574f04abdcf3057ccf4f24,
     type: 3}
   m_PrefabInstance: {fileID: 968434913}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &643737679 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6167676822928727655, guid: e012a139682db664d90fcd0ed888baca,
-    type: 3}
-  m_PrefabInstance: {fileID: 1526584571}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &692471149
 GameObject:
@@ -795,7 +776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveSpeed: 10
   nextObject: {fileID: 2083262777}
-  m_delay: 20
+  m_delay: 6
 --- !u!114 &849257749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,11 +790,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 10
-  m_bulletPrefab: {fileID: 1341015586608052, guid: 19082e9109732cd42b2a979a1428fd48,
-    type: 3}
+  m_bulletPrefab: {fileID: 0}
   m_bulletPrefab2: {fileID: 0}
   m_laserPrefab: {fileID: 0}
-  m_muzzle: {fileID: 1977538700}
+  m_muzzle: {fileID: 0}
   m_muzzle1: {fileID: 0}
   m_muzzle2: {fileID: 0}
   m_muzzle3: {fileID: 0}
@@ -972,6 +952,14 @@ PrefabInstance:
       propertyPath: m_muzzle.Array.data[4]
       value: 
       objectReference: {fileID: 571012978}
+    - target: {fileID: 959518391, guid: d2d6816f42574f04abdcf3057ccf4f24, type: 3}
+      propertyPath: m_delay
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 959518391, guid: d2d6816f42574f04abdcf3057ccf4f24, type: 3}
+      propertyPath: moving
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1041965140668232, guid: d2d6816f42574f04abdcf3057ccf4f24, type: 3}
       propertyPath: m_Name
       value: Player 1
@@ -1730,7 +1718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveSpeed: 10
   nextObject: {fileID: 849257742}
-  m_delay: 20
+  m_delay: 6
 --- !u!114 &1445263125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1744,11 +1732,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 10
-  m_bulletPrefab: {fileID: 1341015586608052, guid: 19082e9109732cd42b2a979a1428fd48,
-    type: 3}
+  m_bulletPrefab: {fileID: 0}
   m_bulletPrefab2: {fileID: 0}
   m_laserPrefab: {fileID: 0}
-  m_muzzle: {fileID: 78201135}
+  m_muzzle: {fileID: 0}
   m_muzzle1: {fileID: 0}
   m_muzzle2: {fileID: 0}
   m_muzzle3: {fileID: 0}
@@ -2179,12 +2166,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1977538700 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6167676822928727655, guid: e012a139682db664d90fcd0ed888baca,
-    type: 3}
-  m_PrefabInstance: {fileID: 1136833389}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2083262777 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6167676823081068783, guid: e012a139682db664d90fcd0ed888baca,
@@ -2205,7 +2186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveSpeed: 10
   nextObject: {fileID: 369904179}
-  m_delay: 20
+  m_delay: 6
 --- !u!114 &2083262784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2219,11 +2200,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 10
-  m_bulletPrefab: {fileID: 1341015586608052, guid: 19082e9109732cd42b2a979a1428fd48,
-    type: 3}
+  m_bulletPrefab: {fileID: 0}
   m_bulletPrefab2: {fileID: 0}
   m_laserPrefab: {fileID: 0}
-  m_muzzle: {fileID: 460595001}
+  m_muzzle: {fileID: 0}
   m_muzzle1: {fileID: 0}
   m_muzzle2: {fileID: 0}
   m_muzzle3: {fileID: 0}
