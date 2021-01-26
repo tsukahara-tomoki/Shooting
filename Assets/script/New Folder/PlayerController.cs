@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float m_moveSpeed = 5f;
     /// <summary>弾のプレハブ</summary>
     [SerializeField] GameObject m_bulletPrefab;
+    [SerializeField] GameObject m_bulletPrefab2;
     [SerializeField] Transform[] m_muzzle = new Transform[8];
     [SerializeField] Vector3[] pos = new Vector3[60];
     Vector3 pos1;
@@ -20,8 +21,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject nextObject;
     AudioSource m_audio;
     Rigidbody2D m_rb2d;
+    [SerializeField] float fireDelay;
+    [SerializeField] float shotDelay;
     float fireTimer = 0;
-    bool fireDelay = false;
+    bool fireNow = false;
+    float shotTimer = 0;
+    bool shotNow = false;
 
     [SerializeField] int m_delay = 30;
 
@@ -51,14 +56,24 @@ public class PlayerController : MonoBehaviour
             {
                 //if (this.GetComponentsInChildren<BulletController>().Length < m_bulletLimit)    // 画面内の弾数を制限する
                 {
-                    if (!fireDelay)
+                    if (!fireNow)
                     {
                         Fire();
-                        fireDelay = true;
+                        fireNow = true;
                         fireTimer = 0f;   // タイマーをリセットする
                     }
                     //Fire();
                 }
+            }
+            if (Input.GetButton("Fire2"))
+            {
+                if (!shotNow)
+                {
+                    Shot();
+                    shotNow = true;
+                    shotTimer = 0f;   // タイマーをリセットする
+                }
+                
             }
             if (nextObject)
             {
@@ -85,9 +100,14 @@ public class PlayerController : MonoBehaviour
             }
         }
         fireTimer += Time.deltaTime;
-        if (fireTimer > 0.3)    // 待つ
+        if (fireTimer > fireDelay)    // 待つ
         {
-            fireDelay = false;
+            fireNow = false;
+        }
+        shotTimer += Time.deltaTime;
+        if (shotTimer > shotDelay)    // 待つ
+        {
+            shotNow = false;
         }
 
     }
@@ -98,6 +118,18 @@ public class PlayerController : MonoBehaviour
             GameObject go = Instantiate(m_bulletPrefab, m_muzzle[0].position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
             go.transform.SetParent(this.transform);
             //m_audio.Play();
+        }
+    }
+    void Shot()
+    {
+        GameObject go;
+        if (m_bulletPrefab2) // m_bulletPrefab にプレハブが設定されている時
+        {
+            for (int i = 0; i < m_muzzle.Length; i++)
+            {
+                go = Instantiate(m_bulletPrefab2, m_muzzle[i].position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+                go.transform.SetParent(this.transform);
+            }
         }
     }
     void Initialize()

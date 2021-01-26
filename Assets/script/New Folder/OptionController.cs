@@ -8,6 +8,7 @@ public class OptionController : MonoBehaviour
     [SerializeField] float m_moveSpeed = 10f;
     /// <summary>弾のプレハブ</summary>
     [SerializeField] GameObject m_bulletPrefab;
+    [SerializeField] GameObject m_bulletPrefab2;
     [SerializeField] Transform[] m_muzzle = new Transform[8];
     readonly Vector3[] pos = new Vector3[60];
     Vector3 pos1;
@@ -16,7 +17,11 @@ public class OptionController : MonoBehaviour
     [SerializeField] int m_delay = 30;
     bool  moving = true;
     float fireTimer = 0;
-    bool fireDelay = false;
+    bool fireNow = false;
+    float shotTimer = 0;
+    bool shotNow = false;
+    [SerializeField] float fireDelay;
+    [SerializeField] float shotDelay;
     int i = 0;
     // Start is called before the first frame update
     void Start()
@@ -33,19 +38,34 @@ public class OptionController : MonoBehaviour
         {
             //if (this.GetComponentsInChildren<BulletController>().Length < m_bulletLimit)    // 画面内の弾数を制限する
             {
-                if (!fireDelay)
+                if (!fireNow)
                 {
                     Fire();
-                    fireDelay = true;
+                    fireNow = true;
                     fireTimer = 0f;   // タイマーをリセットする
                 }
                 //Fire();
             }
         }
-        fireTimer += Time.deltaTime;
-        if (fireTimer > 0.3)    // 待つ
+        if (Input.GetButton("Fire2"))
         {
-            fireDelay = false;
+            if (!shotNow)
+            {
+                Shot();
+                shotNow = true;
+                shotTimer = 0f;   // タイマーをリセットする
+            }
+
+        }
+        fireTimer += Time.deltaTime;
+        if (fireTimer > fireDelay)    // 待つ
+        {
+            fireNow = false;
+        }
+        shotTimer += Time.deltaTime;
+        if (shotTimer > shotDelay)    // 待つ
+        {
+            shotNow = false;
         }
         if (nextObject)
         {
@@ -88,6 +108,18 @@ public class OptionController : MonoBehaviour
             //m_audio.Play();
         }
     }
+    void Shot()
+    {
+        GameObject go;
+        if (m_bulletPrefab2) // m_bulletPrefab にプレハブが設定されている時
+        {
+            for (int i = 0; i < m_muzzle.Length; i++)
+            {
+                go = Instantiate(m_bulletPrefab2, m_muzzle[i].position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+                go.transform.SetParent(this.transform);
+            }
+        }
+    }
     void Initialize()
     {
         for (int i = 59; i >= 0; i--)
@@ -127,12 +159,12 @@ public class OptionController : MonoBehaviour
             if (moving)
             {
 
-                //transform.position = pos;
+            //transform.position = pos;
 
-
+                Debug.Log("うごく");
                 Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
                 m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
-
+                Debug.Log(dir * m_moveSpeed);
             }
             else
             {
