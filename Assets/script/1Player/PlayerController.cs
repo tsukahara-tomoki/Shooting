@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     bool fireNow = false;
     float shotTimer = 0;
     bool shotNow = false;
+    [SerializeField] bool firstPlayer;
+    int j = 0;
 
     [SerializeField] int m_delay = 30;
 
@@ -47,34 +49,71 @@ public class PlayerController : MonoBehaviour
         // 自機を移動させる]
         //if (!lasernow)
         {
-            h = Input.GetAxisRaw("Horizontal");   // 垂直方向の入力を取得する
-            v = Input.GetAxisRaw("Vertical");     // 水平方向の入力を取得する
+            if (firstPlayer)
+            {
+                h = Input.GetAxisRaw("Horizontal1P");   // 垂直方向の入力を取得する
+                v = Input.GetAxisRaw("Vertical1P");     // 水平方向の入力を取得する
+            }
+            else
+            {
+                h = Input.GetAxisRaw("Horizontal2P");   // 垂直方向の入力を取得する
+                v = Input.GetAxisRaw("Vertical2P");     // 水平方向の入力を取得する
+            }
             dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction) 
             m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
             // 左クリックまたは左 Ctrl で弾を発射する（単発）
-            if (Input.GetButton("Fire1"))
+            if (firstPlayer)
             {
-                //if (this.GetComponentsInChildren<BulletController>().Length < m_bulletLimit)    // 画面内の弾数を制限する
+                if (Input.GetButton("Fire1"))
                 {
-                    if (!fireNow)
+                    //if (this.GetComponentsInChildren<BulletController>().Length < m_bulletLimit)    // 画面内の弾数を制限する
                     {
-                        Fire();
-                        fireNow = true;
-                        fireTimer = 0f;   // タイマーをリセットする
+                        if (!fireNow)
+                        {
+                            Fire();
+                            fireNow = true;
+                            fireTimer = 0f;   // タイマーをリセットする
+                        }
+                        //Fire();
                     }
-                    //Fire();
                 }
-            }
-            if (Input.GetButton("Fire2"))
-            {
-                if (!shotNow)
+                if (Input.GetButton("Fire2"))
                 {
-                    Shot();
-                    shotNow = true;
-                    shotTimer = 0f;   // タイマーをリセットする
+                    if (!shotNow)
+                    {
+                        Shot();
+                        shotNow = true;
+                        shotTimer = 0f;   // タイマーをリセットする
+                    }
+
                 }
-                
             }
+            else
+            {
+                if (Input.GetButton("2PFire1"))
+                {
+                    { 
+                        if (!fireNow)
+                        {
+                            Fire();
+                            fireNow = true;
+                            fireTimer = 0f;   // タイマーをリセットする
+                        }
+                        //Fire();
+                    }
+                }
+                if (Input.GetButton("2PFire2"))
+                {
+                    if (!shotNow)
+                    {
+                        Shot();
+                        shotNow = true;
+                        shotTimer = 0f;   // タイマーをリセットする
+                    }
+
+                }
+            }
+            
             if (nextObject)
             {
 
@@ -160,4 +199,50 @@ public class PlayerController : MonoBehaviour
         }
         pos[0] = transform.position;
     }
+    void Hit(int i)
+    {
+
+        // GameManager にやられたことを知らせる
+        GameObject gameManagerObject = GameObject.Find("GameManager");
+        if (gameManagerObject)
+        {
+            GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
+            if (gameManager)
+            {
+                if (j == 0){ j++;return; }
+                j = 0;
+                switch (i)
+                {
+                    case 1:
+                        gameManager.PlayerHit1P();
+                        break;
+                    case 2:
+                        gameManager.PlayerHit2P();
+                        break;
+                    default:
+                        break;
+                }
+
+                
+            }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (firstPlayer)
+        {
+            if (collision.gameObject.tag == "2Pbullet")
+            {
+                Hit(1);
+            }
+        }
+        else
+        {
+            if (collision.gameObject.tag == "1Pbullet")
+            {
+                Hit(2);
+            }
+        }
+    }
 }
+

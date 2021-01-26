@@ -62,14 +62,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\script\1Player\OptionController.cs" />
+    <Compile Include="Assets\script\1Player\PlayerController.cs" />
     <Compile Include="Assets\script\BulletController.cs" />
     <Compile Include="Assets\script\DestroyerController.cs" />
     <Compile Include="Assets\script\EnemyBulletController.cs" />
-    <Compile Include="Assets\script\New Folder\OptionController.cs" />
-    <Compile Include="Assets\script\New Folder\PlayerController.cs" />
-    <Compile Include="Assets\script\O.cs" />
+    <Compile Include="Assets\script\GameManager.cs" />
+    <Compile Include="Assets\script\New Folder\GameManager1.cs" />
+    <Compile Include="Assets\script\New Folder\O.cs" />
+    <Compile Include="Assets\script\New Folder\P.cs" />
     <Compile Include="Assets\script\OwnmachineController.cs" />
-    <Compile Include="Assets\script\P.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

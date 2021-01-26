@@ -22,6 +22,7 @@ public class OptionController : MonoBehaviour
     bool shotNow = false;
     [SerializeField] float fireDelay;
     [SerializeField] float shotDelay;
+    [SerializeField] bool firstPlayer;
     int i = 0;
     // Start is called before the first frame update
     void Start()
@@ -34,29 +35,58 @@ public class OptionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (firstPlayer)
         {
-            //if (this.GetComponentsInChildren<BulletController>().Length < m_bulletLimit)    // 画面内の弾数を制限する
+            if (Input.GetButton("Fire1"))
             {
-                if (!fireNow)
+                //if (this.GetComponentsInChildren<BulletController>().Length < m_bulletLimit)    // 画面内の弾数を制限する
                 {
-                    Fire();
-                    fireNow = true;
-                    fireTimer = 0f;   // タイマーをリセットする
+                    if (!fireNow)
+                    {
+                        Fire();
+                        fireNow = true;
+                        fireTimer = 0f;   // タイマーをリセットする
+                    }
+                    //Fire();
                 }
-                //Fire();
             }
-        }
-        if (Input.GetButton("Fire2"))
-        {
-            if (!shotNow)
+            if (Input.GetButton("Fire2"))
             {
-                Shot();
-                shotNow = true;
-                shotTimer = 0f;   // タイマーをリセットする
-            }
+                if (!shotNow)
+                {
+                    Shot();
+                    shotNow = true;
+                    shotTimer = 0f;   // タイマーをリセットする
+                }
 
+            }
         }
+        else
+        {
+            if (Input.GetButton("2PFire1"))
+            {
+                {
+                    if (!fireNow)
+                    {
+                        Fire();
+                        fireNow = true;
+                        fireTimer = 0f;   // タイマーをリセットする
+                    }
+                    //Fire();
+                }
+            }
+            if (Input.GetButton("2PFire2"))
+            {
+                if (!shotNow)
+                {
+                    Shot();
+                    shotNow = true;
+                    shotTimer = 0f;   // タイマーをリセットする
+                }
+
+            }
+        }
+        
         fireTimer += Time.deltaTime;
         if (fireTimer > fireDelay)    // 待つ
         {
@@ -174,12 +204,73 @@ public class OptionController : MonoBehaviour
                 m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
 
             }
-        }
-        //else
-        //{
-        //    h = 0;
-        //    v = 0;
-        //    Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
-        //    m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
-        //}
     }
+    //else
+    //{
+    //    h = 0;
+    //    v = 0;
+    //    Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
+    //    m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
+    //}
+    void Hit(string name)
+    {
+
+        // GameManager にやられたことを知らせる
+        GameObject gameManagerObject = GameObject.Find("GameManager");
+        if (gameManagerObject)
+        {
+            GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
+            if (gameManager)
+            {
+                switch (name)
+                {
+                    case "Option":
+                        gameManager.OptionHit1P1();
+                        break;
+                    case "Option (1)":
+                        gameManager.OptionHit1P2();
+                        break;
+                    case "Option (2)":
+                        gameManager.OptionHit1P3();
+                        break;
+                    case "Option (3)":
+                        gameManager.OptionHit1P4();
+                        break;
+                    case "Option2P (1)":
+                        gameManager.OptionHit2P1();
+                        break;
+                    case "Option2P (2)":
+                        gameManager.OptionHit2P2();
+                        break;
+                    case "Option2P (3)":
+                        gameManager.OptionHit2P3();
+                        break;
+                    case "Option2P (4)":
+                        gameManager.OptionHit2P4();
+                        break;
+                    default:
+                        break;
+                }
+
+
+            }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (firstPlayer)
+        {
+            if (collision.gameObject.tag == "2Pbullet")
+            {
+                Hit(this.gameObject.name);
+            }
+        }
+        else
+        {
+            if (collision.gameObject.tag == "1Pbullet")
+            {
+                Hit(this.gameObject.name);
+            }
+        }
+    }
+}

@@ -43,7 +43,7 @@ public class BulletController : MonoBehaviour
         {
             m_life--;
         }
-        if (collision.gameObject.tag == "2Player")
+        if (collision.gameObject.tag == "2P")
         {
             Destroy(this.gameObject);
         }
