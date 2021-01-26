@@ -1,8 +1,8 @@
-﻿using Photon.Pun;
+﻿//using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Realtime;
+//using Photon.Realtime;
 
 /// <summary>
 /// 敵の弾を発射するためのコンポーネント
@@ -13,13 +13,14 @@ public class EnemyBulletController : MonoBehaviour
 {
     /// <summary>弾が飛ぶスピード</summary>
     [SerializeField] float m_speed = 1f;
-    [SerializeField] GameObject player;
+    GameObject player;
+    [SerializeField] string objectName;
     Rigidbody2D m_rb;
-    PhotonView m_view;
+    //PhotonView m_view;
 
     void Start()
     {
-        player = GameObject.Find("Player 1"); 
+        player = GameObject.Find(objectName); 
         m_rb = GetComponent<Rigidbody2D>();
 
         // プレイヤーに向かっていく方向のベクトルを計算する
