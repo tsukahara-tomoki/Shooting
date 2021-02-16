@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4318738861917898}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Muzzle (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,8 +39,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4916202385598548}
-  m_Layer: 11
-  m_Name: Muzzle (8)
+  m_Layer: 10
+  m_Name: Muzzle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ Transform:
   m_LocalScale: {x: 0.50000006, y: 0.50000006, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4952617375114492}
-  m_RootOrder: 8
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1227160436520910
 GameObject:
@@ -69,8 +69,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4546605554970874}
-  m_Layer: 11
-  m_Name: Muzzle
+  m_Layer: 10
+  m_Name: Muzzle(8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4952617375114492}
-  m_RootOrder: 1
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1244208089247882
 GameObject:
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4988656262026056}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Muzzle (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,8 +129,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4307273374016682}
-  m_Layer: 11
-  m_Name: Muzzle (3)
+  m_Layer: 10
+  m_Name: Muzzle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4952617375114492}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1645874672909514
 GameObject:
@@ -159,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4399284640552670}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Muzzle2P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,8 +189,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4829877575724792}
-  m_Layer: 11
-  m_Name: Muzzle (5)
+  m_Layer: 10
+  m_Name: Muzzle (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +208,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4952617375114492}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1712709827111982
 GameObject:
@@ -219,8 +219,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4876359993501272}
-  m_Layer: 11
-  m_Name: Muzzle (6)
+  m_Layer: 10
+  m_Name: Muzzle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,7 +238,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4952617375114492}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1747186818525854
 GameObject:
@@ -249,8 +249,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4458377717989650}
-  m_Layer: 11
-  m_Name: Muzzle (2)
+  m_Layer: 10
+  m_Name: Muzzle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,7 +268,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4952617375114492}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1877680441847370
 GameObject:
@@ -281,16 +281,14 @@ GameObject:
   - component: {fileID: 4952617375114492}
   - component: {fileID: 212120305368262398}
   - component: {fileID: 95037149061161098}
-  - component: {fileID: 5392061023787951439}
-  - component: {fileID: 114778488175585738}
-  - component: {fileID: 114627266767558164}
   - component: {fileID: 50049874242700186}
   - component: {fileID: 82625702226200838}
   - component: {fileID: 58469711770283804}
   - component: {fileID: 61707388531987770}
-  m_Layer: 11
+  - component: {fileID: 1225285085}
+  m_Layer: 10
   m_Name: 2Player
-  m_TagString: Player
+  m_TagString: 2P
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,19 +300,19 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877680441847370}
-  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: -0, z: 1, w: -0.0000001872535}
   m_LocalPosition: {x: 0, y: 3.04, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4399284640552670}
-  - {fileID: 4546605554970874}
   - {fileID: 4458377717989650}
-  - {fileID: 4307273374016682}
-  - {fileID: 4988656262026056}
-  - {fileID: 4829877575724792}
-  - {fileID: 4876359993501272}
-  - {fileID: 4318738861917898}
   - {fileID: 4916202385598548}
+  - {fileID: 4876359993501272}
+  - {fileID: 4988656262026056}
+  - {fileID: 4307273374016682}
+  - {fileID: 4829877575724792}
+  - {fileID: 4318738861917898}
+  - {fileID: 4546605554970874}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180.00002}
@@ -332,6 +330,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -386,152 +385,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5392061023787951439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877680441847370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11127c0b95366714990f624b2e673b64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_laserPrefab: {fileID: 0}
-  m_muzzle: {fileID: 0}
---- !u!114 &114778488175585738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877680441847370}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7870c597033a7b941a8253a817b6ca5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_moveSpeed: 5
-  m_bulletPrefab: {fileID: 1913528034436214, guid: 6f63b6edd387d594d962615b3cad3c9a,
-    type: 3}
-  m_bulletPrefab2: {fileID: 0}
-  m_laserPrefab: {fileID: 0}
-  m_muzzle: {fileID: 4399284640552670}
-  m_muzzle1: {fileID: 0}
-  m_muzzle2: {fileID: 0}
-  m_muzzle3: {fileID: 0}
-  m_muzzle4: {fileID: 0}
-  m_muzzle5: {fileID: 0}
-  m_muzzle6: {fileID: 0}
-  m_muzzle7: {fileID: 0}
-  m_muzzle8: {fileID: 0}
-  m_bulletLimit: 3
-  m_explosionEffect: {fileID: 1285936040947722, guid: 80f9530babd56b94c93da26ba98f7ee3,
-    type: 3}
-  m_godMode: 1
-  lasernow: 0
-  laserwait: 0
-  pos:
-  - {x: 15313.016, y: 0, z: 4.6e-44}
-  - {x: 0, y: 1.1021831e+24, z: 1.6930769e+22}
-  - {x: 9.223477e-39, y: 0, z: 15313.0625}
-  moving: 1
-  m_ammunitionTime: 5
---- !u!114 &114627266767558164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877680441847370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e1812ad6ddf3bd4dab172b0635e06e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_moveSpeed: 5
-  m_bulletPrefab: {fileID: 1913528034436214, guid: 6f63b6edd387d594d962615b3cad3c9a,
-    type: 3}
-  m_bulletPrefab2: {fileID: 1088526648527652, guid: 093587dd3ee037d4b8498ec2ba8d27a7,
-    type: 3}
-  m_laserPrefab: {fileID: 0}
-  m_muzzle: {fileID: 4546605554970874}
-  m_muzzle2: {fileID: 4458377717989650}
-  m_muzzle3: {fileID: 4307273374016682}
-  m_muzzle4: {fileID: 4988656262026056}
-  m_muzzle5: {fileID: 4829877575724792}
-  m_muzzle6: {fileID: 4876359993501272}
-  m_muzzle7: {fileID: 4318738861917898}
-  m_muzzle8: {fileID: 4916202385598548}
-  m_bulletLimit: 3
-  m_explosionEffect: {fileID: 0}
-  m_godMode: 1
-  pos:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  moving: 1
-  m_ammunitionTime: 1
-  laserwait: 0
-  lasernow: 0
 --- !u!50 &50049874242700186
 Rigidbody2D:
   serializedVersion: 4
@@ -691,3 +544,95 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.15}
   m_EdgeRadius: 0
+--- !u!114 &1225285085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877680441847370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74dc8e11440829148b88a5c9a5707e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_moveSpeed: 10
+  m_bulletPrefab: {fileID: 1913528034436214, guid: 2527049b93995a54799fbf71a4e1d970,
+    type: 3}
+  m_bulletPrefab2: {fileID: 0}
+  m_muzzle:
+  - {fileID: 4458377717989650}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  pos:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  moving: 1
+  nextObject: {fileID: 0}
+  fireDelay: 0.5
+  shotDelay: 1.5
+  firstPlayer: 0
+  m_delay: 5

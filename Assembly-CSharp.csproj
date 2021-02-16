@@ -67,6 +67,7 @@
     <Compile Include="Assets\script\BulletController.cs" />
     <Compile Include="Assets\script\DestroyerController.cs" />
     <Compile Include="Assets\script\EnemyBulletController.cs" />
+    <Compile Include="Assets\script\ExplosionEffectController.cs" />
     <Compile Include="Assets\script\GameManager.cs" />
     <Compile Include="Assets\script\New Folder\GameManager1.cs" />
     <Compile Include="Assets\script\New Folder\O.cs" />

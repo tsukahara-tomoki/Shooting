@@ -14,7 +14,8 @@ public class BulletController : MonoBehaviour
     /// <summary>弾の飛ぶ速度</summary>
     [SerializeField] float m_bulletSpeed = 10f;
     Rigidbody2D m_rb2d;
-    [SerializeField] float m_life= 2;
+    [SerializeField] float m_life = 2;
+    [SerializeField] bool firstPlayer;
 
     void Start()
     {
@@ -26,35 +27,50 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Finish タグのついた Trigger に接触したら弾を消す
-        if (collision.gameObject.tag == "killzoneTag")
+        if (firstPlayer)
         {
-            Destroy(this.gameObject);
+            if (collision.gameObject.tag == "2P")
+            {
+                Destroy(this.gameObject);
+            }
+            if (collision.gameObject.tag == "2Pbullet")
+            {
+                Destroy(this.gameObject);
+            }
+            if (collision.gameObject.tag == "2PsubBullet")
+            {
+                m_life--;
+                if (m_life <= 0)
+                {
+                    Destroy(this.gameObject);
+                }
+            }
         }
-        if (collision.gameObject.tag == "Bullet")
+        else
         {
-            Destroy(this.gameObject);
+            if (collision.gameObject.tag == "1P")
+            {
+                Destroy(this.gameObject);
+            }
+            if (collision.gameObject.tag == "1Pbullet")
+            {
+                Destroy(this.gameObject);
+            }
+            if (collision.gameObject.tag == "1PsubBullet")
+            {
+                m_life--;
+                if (m_life <= 0)
+                {
+                    Destroy(this.gameObject);
+                }
+            }
         }
+
         if (collision.gameObject.tag == "laser")
         {
             Destroy(this.gameObject);
         }
-        if (collision.gameObject.tag == "EnemyBullet")
-        {
-            m_life--;
-        }
-        if (collision.gameObject.tag == "2P")
-        {
-            Destroy(this.gameObject);
-        }
-        if (collision.gameObject.tag == "2POption")
-        {
-            Destroy(this.gameObject);
-        }
-        if (m_life < 0)
-        {
-            Destroy(this.gameObject);
-        }
+
 
 
     }

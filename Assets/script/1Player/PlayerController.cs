@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject m_bulletPrefab;
     [SerializeField] GameObject m_bulletPrefab2;
     [SerializeField] Transform[] m_muzzle = new Transform[8];
-    [SerializeField] Vector3[] pos = new Vector3[60];
+    [SerializeField] Vector3[] pos = new Vector3[30];
     Vector3 pos1;
     private int i = 0;
     [SerializeField] bool moving = true;
@@ -29,15 +29,25 @@ public class PlayerController : MonoBehaviour
     bool shotNow = false;
     [SerializeField] bool firstPlayer;
     int j = 0;
-
+    OptionController optionController;
     [SerializeField] int m_delay = 30;
+    /// <summary>爆発エフェクト</summary>
+    [SerializeField] GameObject m_explosionEffect;
+    bool dead = false;
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         m_rb2d = GetComponent<Rigidbody2D>();
         m_audio = GetComponent<AudioSource>();
-        if(nextObject)Initialize();
+        if (nextObject)
+        {
+            optionController = nextObject.GetComponent<OptionController>();
+        }
+        GameObject gameManagerObject = GameObject.Find("GameManager");
+        gameManager = gameManagerObject.GetComponent<GameManager>();
+        if (nextObject)Initialize();
     }
 
     // Update is called once per frame
@@ -57,7 +67,8 @@ public class PlayerController : MonoBehaviour
             else
             {
                 h = Input.GetAxisRaw("Horizontal2P");   // 垂直方向の入力を取得する
-                v = Input.GetAxisRaw("Vertical2P");     // 水平方向の入力を取得する
+                v = Input.GetAxisRaw("Vertical2P");
+                v *= -1;// 水平方向の入力を取得する
             }
             dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction) 
             m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
@@ -124,7 +135,6 @@ public class PlayerController : MonoBehaviour
                     //{
                     //    moving = false;
                     //}
-                    OptionController optionController = nextObject.GetComponent<OptionController>();
                     optionController.Move(pos[m_delay], moving);
 
                     Buffer();
@@ -132,21 +142,35 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                 moving = false;
-                OptionController optionController = nextObject.GetComponent<OptionController>();
                 optionController.Move(pos[m_delay], moving);
                 }
 
             }
         }
         fireTimer += Time.deltaTime;
-        if (fireTimer > fireDelay)    // 待つ
-        {
-            fireNow = false;
-        }
         shotTimer += Time.deltaTime;
-        if (shotTimer > shotDelay)    // 待つ
+        if (firstPlayer)
         {
-            shotNow = false;
+            if (fireTimer > fireDelay / (float)gameManager.dNam1)    // 待つ
+            {
+                fireNow = false;
+                
+            }
+            if (shotTimer > shotDelay/gameManager.dNam1)    // 待つ
+            {
+                shotNow = false;
+            }
+        }
+        else
+        {
+            if (fireTimer > fireDelay/ gameManager.dNam2)    // 待つ
+            {
+                fireNow = false;
+            }
+            if (shotTimer > shotDelay/ gameManager.dNam2)    // 待つ
+            {
+                shotNow = false;
+            }
         }
 
     }
@@ -173,7 +197,7 @@ public class PlayerController : MonoBehaviour
     }
     void Initialize()
     {
-        for (int i = 59; i >= 0; i--)
+        for (int i = 29; i >= 0; i--)
         {
             pos[i] = transform.position;
         }
@@ -193,7 +217,7 @@ public class PlayerController : MonoBehaviour
         //        i++;
         //        break;
          //}
-        for (int i = 59; i > 0; i--)
+        for (int i = 29; i > 0; i--)
         {
             pos[i] = pos[i - 1];
         }
@@ -218,6 +242,7 @@ public class PlayerController : MonoBehaviour
                         break;
                     case 2:
                         gameManager.PlayerHit2P();
+                        Debug.Log("は?");
                         break;
                     default:
                         break;
@@ -226,6 +251,10 @@ public class PlayerController : MonoBehaviour
                 
             }
         }
+    }
+    public void PlayerDestroy()
+    {
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -16,19 +16,13 @@ public class EnemyBulletController : MonoBehaviour
     GameObject player;
     [SerializeField] string objectName;
     Rigidbody2D m_rb;
+    [SerializeField] bool firstPlayer;
     //PhotonView m_view;
 
     void Start()
     {
         player = GameObject.Find(objectName); 
         m_rb = GetComponent<Rigidbody2D>();
-
-        // プレイヤーに向かっていく方向のベクトルを計算する
-        if (!player)    // プレイヤーがいない時は弾を出さない（４週目で追加）
-        {
-            Destroy(this.gameObject);
-            return;
-        }
         Vector2 dir = player.transform.position - this.transform.position;
         dir = dir.normalized;
 
@@ -37,35 +31,42 @@ public class EnemyBulletController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (firstPlayer)
+        {
+            if (collision.gameObject.tag == "2P")
+            {
+                Destroy(this.gameObject);
+            }
+            if (collision.gameObject.tag == "2Pbullet")
+            {
+                Destroy(this.gameObject);
+            }
+            if (collision.gameObject.tag == "2PsubBullet")
+            {
+                Destroy(this.gameObject);
+            }
+        }
+        else
+        {
+            if (collision.gameObject.tag == "1P")
+            {
+                Destroy(this.gameObject);
+            }
+            if (collision.gameObject.tag == "1Pbullet")
+            {
+                Destroy(this.gameObject);
+            }
+            if (collision.gameObject.tag == "1PsubBullet")
+            {
+                Destroy(this.gameObject);
+            }
+        }
         // Finish タグのついた Trigger に接触したら弾を消す
-        if (collision.gameObject.tag == "killzoneTag")
-        {
-            Destroy(this.gameObject);
-        }
-        if (collision.gameObject.tag == "Bullet")
-        {
-            Destroy(this.gameObject);
-        }
         if (collision.gameObject.tag == "laser")
         {
             Destroy(this.gameObject);
         }
-        if (collision.gameObject.tag == "EnemyBullet")
-        {
-            Destroy(this.gameObject);
-        }
-        if (collision.gameObject.tag == "2Player")
-        {
-            Destroy(this.gameObject);
-        }
-        if (collision.gameObject.tag == "2POption")
-        {
-            Destroy(this.gameObject);
-        }
-        /*if ((collision.gameObject.tag == "Player")
-        {
 
-        }*/
     }
     private void OnTriggerStay2D(Collider2D other)
     {

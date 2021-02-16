@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6112703198109402008}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: Muzzle (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6112703198330920901}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: Muzzle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6112703198628205372}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: Muzzle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6112703198887560639}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: Muzzle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6112703198972300558}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: Muzzle (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6112703199303342781}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: Muzzle (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6112703199375753896}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: Muzzle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,15 +221,12 @@ GameObject:
   - component: {fileID: 6112703199406894643}
   - component: {fileID: 6112703199406894642}
   - component: {fileID: 6112703199406894645}
-  - component: {fileID: 6112703199406894644}
   - component: {fileID: 6112703199406894647}
   - component: {fileID: 6112703199406894646}
-  - component: {fileID: 6112703199406894601}
-  - component: {fileID: 6112703199406894600}
-  - component: {fileID: 6112703199406894603}
-  m_Layer: 12
+  - component: {fileID: 2102920465}
+  m_Layer: 10
   m_Name: Option2P (1)
-  m_TagString: 2POption
+  m_TagString: 2P
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,9 +238,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6112703199406894602}
-  m_LocalRotation: {x: -0, y: -0, z: -1, w: -0.00000035762784}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0.00000028088027}
   m_LocalPosition: {x: 1.52512, y: 2.03708, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 6112703199445690184}
   - {fileID: 6112703198628205372}
@@ -314,7 +311,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6112703199406894602}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -333,98 +330,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.35, y: 0.63}
   m_EdgeRadius: 0
---- !u!114 &6112703199406894644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6112703199406894602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09f59d1a329dab4409950aa560537148, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_moveSpeed: 6
-  m_bulletPrefab: {fileID: 1913528034436214, guid: 6f63b6edd387d594d962615b3cad3c9a,
-    type: 3}
-  m_bulletPrefab2: {fileID: 1618659566719506, guid: 91984b96ac7c472448aeb13011d236bf,
-    type: 3}
-  m_laserPrefab: {fileID: 0}
-  m_muzzle: {fileID: 6112703199445690184}
-  m_muzzle2: {fileID: 6112703198330920901}
-  m_muzzle3: {fileID: 6112703198887560639}
-  m_muzzle4: {fileID: 6112703198109402008}
-  m_muzzle5: {fileID: 6112703199375753896}
-  m_muzzle6: {fileID: 6112703199303342781}
-  m_muzzle7: {fileID: 6112703199623464901}
-  m_muzzle8: {fileID: 6112703198972300558}
-  m_bulletLimit: 3
-  m_explosionEffect: {fileID: 1285936040947722, guid: 80f9530babd56b94c93da26ba98f7ee3,
-    type: 3}
-  m_corpseMode: 0
-  pos:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  m_ammunitionTime: 1
 --- !u!50 &6112703199406894647
 Rigidbody2D:
   serializedVersion: 4
@@ -462,134 +367,36 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
---- !u!95 &6112703199406894601
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6112703199406894602}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5b45e6ab3846db446bd0df5ecd7ff42f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6112703199406894600
+--- !u!114 &2102920465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6112703199406894602}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0165d2f2d78eb4e4487820d770d03d48, type: 3}
+  m_Script: {fileID: 11500000, guid: d3dc34b3cb0f6664d87617e339924f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_moveSpeed: 5
-  m_bulletPrefab: {fileID: 1913528034436214, guid: 6f63b6edd387d594d962615b3cad3c9a,
+  m_moveSpeed: 10
+  m_bulletPrefab: {fileID: 1913528034436214, guid: 2527049b93995a54799fbf71a4e1d970,
     type: 3}
-  m_bulletPrefab2: {fileID: 1618659566719506, guid: 91984b96ac7c472448aeb13011d236bf,
-    type: 3}
-  m_laserPrefab: {fileID: 1687605710428432, guid: f20bc37fe9afe844bbdf2b101950a37d,
-    type: 3}
-  m_muzzle: {fileID: 6112703199445690184}
-  m_muzzle2: {fileID: 6112703198330920901}
-  m_muzzle3: {fileID: 6112703198887560639}
-  m_muzzle4: {fileID: 6112703198109402008}
-  m_muzzle5: {fileID: 6112703199375753896}
-  m_muzzle6: {fileID: 6112703199303342781}
-  m_muzzle7: {fileID: 6112703199623464901}
-  m_muzzle8: {fileID: 6112703198972300558}
-  m_bulletLimit: 3
-  m_explosionEffect: {fileID: 0}
-  m_corpseMode: 0
-  pos:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  m_ammunitionTime: 0
+  m_bulletPrefab2: {fileID: 0}
+  m_muzzle:
+  - {fileID: 6112703198628205372}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   nextObject: {fileID: 0}
-  nanngou: 1
---- !u!114 &6112703199406894603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6112703199406894602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11127c0b95366714990f624b2e673b64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_laserPrefab: {fileID: 1687605710428432, guid: f20bc37fe9afe844bbdf2b101950a37d,
-    type: 3}
-  m_muzzle: {fileID: 6112703198628205372}
+  m_delay: 5
+  fireDelay: 0.5
+  shotDelay: 1.5
+  firstPlayer: 0
 --- !u!1 &6112703199445690187
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +406,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6112703199445690184}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,7 +436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6112703199623464901}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: Muzzle (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

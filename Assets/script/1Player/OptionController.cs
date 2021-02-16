@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OptionController : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class OptionController : MonoBehaviour
     [SerializeField] GameObject m_bulletPrefab;
     [SerializeField] GameObject m_bulletPrefab2;
     [SerializeField] Transform[] m_muzzle = new Transform[8];
-    readonly Vector3[] pos = new Vector3[60];
+    readonly Vector3[] pos = new Vector3[30];
     Vector3 pos1;
     [SerializeField] GameObject nextObject;
     Rigidbody2D m_rb2d;
@@ -23,11 +24,21 @@ public class OptionController : MonoBehaviour
     [SerializeField] float fireDelay;
     [SerializeField] float shotDelay;
     [SerializeField] bool firstPlayer;
+    /// <summary>爆発エフェクト</summary>
+    [SerializeField] GameObject m_explosionEffect;
     int i = 0;
+    OptionController optionController;
+    bool dead = false;
+    GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
-
+        if (nextObject)
+        {
+            optionController = nextObject.GetComponent<OptionController>();
+        }
+        GameObject gameManagerObject = GameObject.Find("GameManager");
+        gameManager = gameManagerObject.GetComponent<GameManager>();
         m_rb2d = GetComponent<Rigidbody2D>();
         if (nextObject) Initialize();
     }
@@ -86,16 +97,31 @@ public class OptionController : MonoBehaviour
 
             }
         }
-        
+
         fireTimer += Time.deltaTime;
-        if (fireTimer > fireDelay)    // 待つ
-        {
-            fireNow = false;
-        }
         shotTimer += Time.deltaTime;
-        if (shotTimer > shotDelay)    // 待つ
+        if (firstPlayer)
         {
-            shotNow = false;
+            if (fireTimer > fireDelay / (float)gameManager.dNam1)    // 待つ
+            {
+                fireNow = false;
+
+            }
+            if (shotTimer > shotDelay / gameManager.dNam1)    // 待つ
+            {
+                shotNow = false;
+            }
+        }
+        else
+        {
+            if (fireTimer > fireDelay / gameManager.dNam2)    // 待つ
+            {
+                fireNow = false;
+            }
+            if (shotTimer > shotDelay / gameManager.dNam2)    // 待つ
+            {
+                shotNow = false;
+            }
         }
         if (nextObject)
         {
@@ -116,14 +142,12 @@ public class OptionController : MonoBehaviour
             if (pos[0] != transform.position)
             {
                 moving = true;
-                OptionController optionController = nextObject.GetComponent<OptionController>();
                 optionController.Move(pos[m_delay], moving);
                 Buffer();
             }
             else
             {
                 moving = false;
-                OptionController optionController = nextObject.GetComponent<OptionController>();
                 optionController.Move(pos[m_delay], moving);
             }
 
@@ -131,28 +155,30 @@ public class OptionController : MonoBehaviour
     }
     void Fire()
     {
+        if (dead){ return; }
         if (m_bulletPrefab) // m_bulletPrefab にプレハブが設定されている時
         {
             GameObject go = Instantiate(m_bulletPrefab, m_muzzle[0].position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
-            go.transform.SetParent(this.transform);
+            //go.transform.SetParent(this.transform);
             //m_audio.Play();
         }
     }
     void Shot()
     {
+        if (dead) { return; }
         GameObject go;
         if (m_bulletPrefab2) // m_bulletPrefab にプレハブが設定されている時
         {
             for (int i = 0; i < m_muzzle.Length; i++)
             {
                 go = Instantiate(m_bulletPrefab2, m_muzzle[i].position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
-                go.transform.SetParent(this.transform);
+                //go.transform.SetParent(this.transform);
             }
         }
     }
     void Initialize()
     {
-        for (int i = 59; i >= 0; i--)
+        for (int i = 29; i >= 0; i--)
         {
             pos[i] = transform.position;
         }
@@ -173,7 +199,7 @@ public class OptionController : MonoBehaviour
         //        break;
         //}
 
-        for (int i = 59; i > 0; i--)
+        for (int i = 29; i > 0; i--)
         {
             pos[i] = pos[i - 1];
         }
@@ -193,8 +219,9 @@ public class OptionController : MonoBehaviour
 
                 Debug.Log("うごく");
                 Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
-                m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
-                Debug.Log(dir * m_moveSpeed);
+                //m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
+                m_rb2d.position = pos;
+                //Debug.Log(pos);
             }
             else
             {
@@ -256,11 +283,41 @@ public class OptionController : MonoBehaviour
             }
         }
     }
+    public void PlayerDestroy()
+    {
+        GetComponent<Renderer>().material.color = new Color32(0, 0, 0, 0);
+        // 爆発エフェクトを置く
+
+        if (m_explosionEffect)
+        {
+            Instantiate(m_explosionEffect, this.transform.position, Quaternion.identity);
+        }
+        //CircleCollider2D circleCollider2D = GetComponent<CircleCollider2D>();
+        //circleCollider2D.enabled = false;
+        this.gameObject.tag = "Die";
+        GameObject gameManagerObject = GameObject.Find("GameManager");
+        GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
+        if (firstPlayer)
+        {
+            gameManager.dNam1 *= 2;
+        }
+        else
+        {
+            gameManager.dNam2 *= 2;
+        }
+        
+        dead = true;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (dead) { return; }
         if (firstPlayer)
         {
             if (collision.gameObject.tag == "2Pbullet")
+            {
+                Hit(this.gameObject.name);
+            }
+            if (collision.gameObject.tag == "2PsubBullet")
             {
                 Hit(this.gameObject.name);
             }
@@ -268,6 +325,10 @@ public class OptionController : MonoBehaviour
         else
         {
             if (collision.gameObject.tag == "1Pbullet")
+            {
+                Hit(this.gameObject.name);
+            }
+            if (collision.gameObject.tag == "1PsubBullet")
             {
                 Hit(this.gameObject.name);
             }
