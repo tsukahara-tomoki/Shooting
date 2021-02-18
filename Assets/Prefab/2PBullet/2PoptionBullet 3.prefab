@@ -133,6 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854de9ab903b721478298925ddbb11d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 1
+  m_speed: 2
   objectName: Option2P (3)
   firstPlayer: 0

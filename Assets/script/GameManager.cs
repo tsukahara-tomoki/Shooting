@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
 
     public float dNam1 = 1;
     public float dNam2 = 1;
+    bool Ready1P;
+    bool Ready2P;
+
 
     /// <summary>タイマー</summary>
     float m_timer;
@@ -90,16 +93,30 @@ public class GameManager : MonoBehaviour
         m_optionLifebar2p2.maxValue = m_Optionlife2P2;
         m_optionLifebar2p3.maxValue = m_Optionlife2P3;
         m_optionLifebar2p4.maxValue = m_Optionlife2P4;
+        m_lifebar1P.value = m_Playerlife1P;
+        m_optionLifebar1p1.value = m_Optionlife1P1;
+        m_optionLifebar1p2.value = m_Optionlife1P2;
+        m_optionLifebar1p3.value = m_Optionlife1P3;
+        m_optionLifebar1p4.value = m_Optionlife1P4;
+        m_lifebar2P.value = m_Playerlife2P;
+        m_optionLifebar2p1.value = m_Optionlife2P1;
+        m_optionLifebar2p2.value = m_Optionlife2P2;
+        m_optionLifebar2p3.value = m_Optionlife2P3;
+        m_optionLifebar2p4.value = m_Optionlife2P4;
     }
 
     void Update()
     {
         if (m_status == 0)  // 初期化前
         {
-     
+
+            if (Ready1P && Ready2P)
+            {
+                m_status = 1;
+            }
 
         }
-        else if (m_status == 1) // 初期化済み、開始前
+        else if (m_status == 1) // カウントダウン
         {
 
             
@@ -114,10 +131,10 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// プレイヤーがやられた時、外部から呼ばれる関数
     /// </summary>
-    public void PlayerHit1P()
+    public void PlayerHit1P(int i)
     {
         Debug.Log("Hit.");
-        m_Playerlife1P--;    // 残機を減らす
+        m_Playerlife1P -= i;    // 残機を減らす
         LifebarRenewal("1P");
         if (m_Playerlife1P < 1)
             {
@@ -130,72 +147,73 @@ public class GameManager : MonoBehaviour
             }
     }
 
-    public void OptionHit1P1()
+
+    public void OptionHit1P1(int i)
     {
-        
-        m_Optionlife1P1--;    // 残機を減らす
+
+        m_Optionlife1P1 -= i;    // 残機を減らす
         LifebarRenewal("1PO1");
-        Debug.Log(m_Optionlife1P1);
+        //sDebug.Log(m_Optionlife1P1);
 
     }
 
-    public void OptionHit1P2()
+    public void OptionHit1P2(int i)
     {
-        m_Optionlife1P2--;
+        m_Optionlife1P2 -= i;
         LifebarRenewal("1PO2");
-        Debug.Log(m_Optionlife1P2);
+        //Debug.Log(m_Optionlife1P2);
 
     }
 
-    public void OptionHit1P3()
+    public void OptionHit1P3(int i)
     {
-        m_Optionlife1P3--;
+        m_Optionlife1P3 -= i;
         LifebarRenewal("1PO3");
-        Debug.Log(m_Optionlife1P3);
+        //Debug.Log(m_Optionlife1P3);
 
     }
 
-    public void OptionHit1P4()
+    public void OptionHit1P4(int i)
     {
-        m_Optionlife1P4--;
+        m_Optionlife1P4 -= i;
         LifebarRenewal("1PO4");
-        Debug.Log(m_Optionlife1P4);
+        //Debug.Log(m_Optionlife1P4);
 
     }
 
-    public void PlayerHit2P()
+    public void PlayerHit2P(int i)
     {
-        m_Playerlife2P--;
+        m_Playerlife2P -= i;
         LifebarRenewal("2P");
-        Debug.Log(m_Playerlife2P);
+        //Debug.Log(m_Playerlife2P);
     }
 
 
-    public void OptionHit2P1()
+    public void OptionHit2P1(int i)
     {
-        m_Optionlife2P1--;
+        m_Optionlife2P1 -= i;
         LifebarRenewal("2PO1");
-        Debug.Log(m_Optionlife2P1);
+        //Debug.Log(m_Optionlife2P1);
     }
-    public void OptionHit2P2()
+    public void OptionHit2P2(int i)
     {
-        m_Optionlife2P2--;
+        m_Optionlife2P2 -= i;
         LifebarRenewal("2PO2");
-        Debug.Log(m_Optionlife2P2);
+        //Debug.Log(m_Optionlife2P2);
     }
 
-    public void OptionHit2P3()
+    public void OptionHit2P3(int i)
     {
         m_Optionlife2P3--;
         LifebarRenewal("2PO3");
-        Debug.Log(m_Optionlife2P3);
+        //Debug.Log(m_Optionlife2P3);
     }
 
-    public void OptionHit2P4()
+    public void OptionHit2P4(int i)
     {
-        m_Optionlife2P4--;
+        m_Optionlife2P4 -= i;
         LifebarRenewal("2PO4");
-        Debug.Log(m_Optionlife2P4);
+        //Debug.Log(m_Optionlife2P4);
     }
 
     /// <summary>
@@ -235,7 +253,7 @@ public class GameManager : MonoBehaviour
                 {
                     PlayerController playerController = Player1P.GetComponent<PlayerController>();
                     playerController.PlayerDestroy();
-                    m_Optionlife2P3 = 0;
+                    m_Playerlife1P = 0;
                     if (m_lifebar1PText)
                     {
                         m_lifebar1PText.text = m_Playerlife1P.ToString();  // 表示を更新する

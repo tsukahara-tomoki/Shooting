@@ -17,6 +17,7 @@ TagManager:
   - 1PsubBullet
   - 2PsubBullet
   - Die
+  - 2Plaser
   layers:
   - Default
   - TransparentFX

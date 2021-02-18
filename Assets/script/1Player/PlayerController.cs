@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 /// <summary>
 /// シューティングゲームの自機を操作するためのコンポーネント
@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>弾のプレハブ</summary>
     [SerializeField] GameObject m_bulletPrefab;
     [SerializeField] GameObject m_bulletPrefab2;
+    [SerializeField] GameObject m_laserPrefab;
     [SerializeField] Transform[] m_muzzle = new Transform[8];
     [SerializeField] Vector3[] pos = new Vector3[30];
     Vector3 pos1;
@@ -23,10 +24,13 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D m_rb2d;
     [SerializeField] float fireDelay;
     [SerializeField] float shotDelay;
+    [SerializeField] float laserDelay;
     float fireTimer = 0;
     bool fireNow = false;
     float shotTimer = 0;
     bool shotNow = false;
+    float laserTimer = 0;
+    bool laserNow = false;
     [SerializeField] bool firstPlayer;
     int j = 0;
     OptionController optionController;
@@ -35,6 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject m_explosionEffect;
     bool dead = false;
     GameManager gameManager;
+    [SerializeField] GameObject winnerText;
 
     // Start is called before the first frame update
     void Start()
@@ -63,15 +68,16 @@ public class PlayerController : MonoBehaviour
             {
                 h = Input.GetAxisRaw("Horizontal1P");   // 垂直方向の入力を取得する
                 v = Input.GetAxisRaw("Vertical1P");     // 水平方向の入力を取得する
+                dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction) 
+                m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
             }
             else
             {
                 h = Input.GetAxisRaw("Horizontal2P");   // 垂直方向の入力を取得する
-                v = Input.GetAxisRaw("Vertical2P");
-                v *= -1;// 水平方向の入力を取得する
+                v = Input.GetAxisRaw("Vertical2P");// 水平方向の入力を取得する
+                dir = new Vector2(-h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction) 
+                m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
             }
-            dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction) 
-            m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
             // 左クリックまたは左 Ctrl で弾を発射する（単発）
             if (firstPlayer)
             {
@@ -98,6 +104,16 @@ public class PlayerController : MonoBehaviour
                     }
 
                 }
+                if (Input.GetButton("Fire3"))
+                {
+                    if (!laserNow)
+                    {
+                        Laser();
+                        laserNow = true;
+                        laserTimer = 0f;   // タイマーをリセットする
+                    }
+
+                }
             }
             else
             {
@@ -120,6 +136,16 @@ public class PlayerController : MonoBehaviour
                         Shot();
                         shotNow = true;
                         shotTimer = 0f;   // タイマーをリセットする
+                    }
+
+                }
+                if (Input.GetButton("2PFire3"))
+                {
+                    if (!laserNow)
+                    {
+                        Laser();
+                        laserNow = true;
+                        laserTimer = 0f;   // タイマーをリセットする
                     }
 
                 }
@@ -149,6 +175,7 @@ public class PlayerController : MonoBehaviour
         }
         fireTimer += Time.deltaTime;
         shotTimer += Time.deltaTime;
+        laserTimer += Time.deltaTime;
         if (firstPlayer)
         {
             if (fireTimer > fireDelay / (float)gameManager.dNam1)    // 待つ
@@ -160,6 +187,10 @@ public class PlayerController : MonoBehaviour
             {
                 shotNow = false;
             }
+            if (laserTimer > laserDelay / gameManager.dNam1)    // 待つ
+            {
+                laserNow = false;
+            }
         }
         else
         {
@@ -170,6 +201,10 @@ public class PlayerController : MonoBehaviour
             if (shotTimer > shotDelay/ gameManager.dNam2)    // 待つ
             {
                 shotNow = false;
+            }
+            if (laserTimer > laserDelay / gameManager.dNam2)    // 待つ
+            {
+                laserNow = false;
             }
         }
 
@@ -191,6 +226,18 @@ public class PlayerController : MonoBehaviour
             for (int i = 0; i < m_muzzle.Length; i++)
             {
                 go = Instantiate(m_bulletPrefab2, m_muzzle[i].position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
+                go.transform.SetParent(this.transform);
+            }
+        }
+    }
+    void Laser()
+    {
+        GameObject go;
+        if (m_laserPrefab) // m_bulletPrefab にプレハブが設定されている時
+        {
+            //for (int i = 0; i < m_muzzle.Length; i++)
+            {
+                go = Instantiate(m_laserPrefab, m_muzzle[0].position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
                 go.transform.SetParent(this.transform);
             }
         }
@@ -233,15 +280,15 @@ public class PlayerController : MonoBehaviour
             GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
             if (gameManager)
             {
-                if (j == 0){ j++;return; }
-                j = 0;
+                //if (j == 0){ j++;return; }
+                //j = 0;
                 switch (i)
                 {
                     case 1:
-                        gameManager.PlayerHit1P();
+                        gameManager.PlayerHit1P(5);
                         break;
                     case 2:
-                        gameManager.PlayerHit2P();
+                        gameManager.PlayerHit2P(5);
                         Debug.Log("は?");
                         break;
                     default:
@@ -252,8 +299,52 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    void LaserHit(int i)
+    {
+        Debug.Log("l");
+        GameObject gameManagerObject = GameObject.Find("GameManager");
+        if (gameManagerObject)
+        {
+            GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
+            if (gameManager)
+            {
+                //if (j == 0){ j++;return; }
+                //j = 0;
+                switch (i)
+                {
+                    case 1:
+                        gameManager.PlayerHit1P(1);
+                        break;
+                    case 2:
+                        gameManager.PlayerHit2P(1);
+                        break;
+                    default:
+                        break;
+                }
+
+
+            }
+        }
+    }
     public void PlayerDestroy()
     {
+        GetComponent<Renderer>().material.color = new Color32(0, 0, 0, 0);
+        // 爆発エフェクトを置く
+
+        if (m_explosionEffect)
+        {
+            Instantiate(m_explosionEffect, this.transform.position, Quaternion.identity);
+        }
+        winnerText.SetActive(true);
+        Text text = winnerText.GetComponent<Text>();
+        if (firstPlayer)
+        {
+            text.text = "2P  WIN";
+        }
+        else
+        {
+            text.text = "1P  WIN";
+        }
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -264,6 +355,12 @@ public class PlayerController : MonoBehaviour
             {
                 Hit(1);
             }
+            if (collision.gameObject.tag == "2PsubBullet")
+            {
+                Hit(1);
+                Debug.Log("???");
+            }
+            
         }
         else
         {
@@ -271,7 +368,32 @@ public class PlayerController : MonoBehaviour
             {
                 Hit(2);
             }
+            if (collision.gameObject.tag == "1PsubBullet")
+            {
+                Hit(2);
+            }
         }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (firstPlayer)
+        {
+            if (collision.gameObject.tag == "2Plaser")
+            {
+                LaserHit(1);
+                Debug.Log("l");
+            }
+
+        }
+        else
+        {
+            if (collision.gameObject.tag == "laser")
+            {
+                LaserHit(2);
+                Debug.Log("l");
+            }
+        }
+        
     }
 }
 

@@ -45,6 +45,10 @@ public class BulletController : MonoBehaviour
                     Destroy(this.gameObject);
                 }
             }
+            if (collision.gameObject.tag == "2Plaser")
+            {
+                Destroy(this.gameObject);
+            }
         }
         else
         {
@@ -64,12 +68,13 @@ public class BulletController : MonoBehaviour
                     Destroy(this.gameObject);
                 }
             }
+            if (collision.gameObject.tag == "1Plaser")
+            {
+                Destroy(this.gameObject);
+            }
         }
 
-        if (collision.gameObject.tag == "laser")
-        {
-            Destroy(this.gameObject);
-        }
+        
 
 
 
