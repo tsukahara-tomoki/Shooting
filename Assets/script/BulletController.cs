@@ -73,10 +73,12 @@ public class BulletController : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-
-        
-
-
-
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "laser")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -448,16 +448,14 @@ public class OptionController : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (dead) { return; }
-        if (firstPlayer)
-        {
-            if (collision.gameObject.tag == "2Plaser")
-            {
-                LaserHit(this.gameObject.name);
-                Debug.Log("l");
-            }
-
-        }
-        else
+        //if (firstPlayer)
+        //{
+        //    if (collision.gameObject.tag == "2Plaser")
+        //    {
+        //        LaserHit(this.gameObject.name);
+        //    }
+        //}
+        //else
         {
             if (collision.gameObject.tag == "laser")
             {

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 /// ゲーム全体を管理するクラス。
 /// EnemyGenerator と同じ GameObject にアタッチする必要がある。
 /// </summary>
-public class GameManager : MonoBehaviour 
+public class GameManager : MonoBehaviour
 {
     /// <summary>
     /// ライフ
@@ -158,11 +158,11 @@ public class GameManager : MonoBehaviour
                 Count();
                 m_timer = 0;
             }
-            
+
         }
         else if (m_status == 3) // プレイヤーがやられた
         {
-            
+
         }
     }
 
@@ -175,8 +175,8 @@ public class GameManager : MonoBehaviour
         m_Playerlife[0] -= i;    // 残機を減らす
         LifebarRenewal("1P");
         if (m_Playerlife[0] < 1)
-            {
-             
+        {
+
             //Debug.Log("PlayerDestroy.");
             var playerController1 = playerObject[0].GetComponent<PlayerController>();
             var playerController2 = playerObject[5].GetComponent<PlayerController>();
@@ -190,8 +190,6 @@ public class GameManager : MonoBehaviour
             //}
         }
     }
-
-
     public void OptionHit1P1(int i)
     {
 
@@ -199,7 +197,6 @@ public class GameManager : MonoBehaviour
         LifebarRenewal("1PO1");
 
     }
-
     public void OptionHit1P2(int i)
     {
         m_Playerlife[2] -= i;
@@ -207,7 +204,6 @@ public class GameManager : MonoBehaviour
         //Debug.Log(m_Optionlife1P2);
 
     }
-
     public void OptionHit1P3(int i)
     {
         m_Playerlife[3] -= i;
@@ -215,7 +211,6 @@ public class GameManager : MonoBehaviour
         //Debug.Log(m_Optionlife1P3);
 
     }
-
     public void OptionHit1P4(int i)
     {
         m_Playerlife[4] -= i;
@@ -223,7 +218,6 @@ public class GameManager : MonoBehaviour
         //Debug.Log(m_Optionlife1P4);
 
     }
-
     public void PlayerHit2P(int i)
     {
         m_Playerlife[5] -= i;
@@ -245,8 +239,6 @@ public class GameManager : MonoBehaviour
         }
         //Debug.Log(m_Playerlife2P);
     }
-
-
     public void OptionHit2P1(int i)
     {
         m_Playerlife[6] -= i;
@@ -259,41 +251,43 @@ public class GameManager : MonoBehaviour
         LifebarRenewal("2PO2");
         //Debug.Log(m_Optionlife2P2);
     }
-
     public void OptionHit2P3(int i)
     {
-        m_Playerlife[8]-= i;
+        m_Playerlife[8] -= i;
         LifebarRenewal("2PO3");
         //Debug.Log(m_Optionlife2P3);
     }
-
     public void OptionHit2P4(int i)
     {
         m_Playerlife[9] -= i;
         LifebarRenewal("2PO4");
         //Debug.Log(m_Optionlife2P4);
     }
+    //-----被弾時、外部から呼ばれる関数ここまで----
 
     /// <summary>
     /// シーン上にある敵と敵の弾を消す
     /// </summary>
-    void ClearScene()
-    {
-        // 敵を消す
-        GameObject[] goArray = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (var go in goArray)
-        {
-            Destroy(go);
-        }
+    //void ClearScene()
+    //{
+    //    // 敵を消す
+    //    GameObject[] goArray = GameObject.FindGameObjectsWithTag("Enemy");
+    //    foreach (var go in goArray)
+    //    {
+    //        Destroy(go);
+    //    }
 
-        // 敵の弾を消す
-        goArray = GameObject.FindGameObjectsWithTag("EnemyBullet");
-        foreach (var go in goArray)
-        {
-            Destroy(go);
-        }
-    }
+    //    // 敵の弾を消す
+    //    goArray = GameObject.FindGameObjectsWithTag("EnemyBullet");
+    //    foreach (var go in goArray)
+    //    {
+    //        Destroy(go);
+    //    }
+    //}
 
+    /// <summary>
+    /// ライフバーの更新 
+    /// </summary>
     void LifebarRenewal(string objectName)
     {
         if (m_status == 3) return;
@@ -320,6 +314,7 @@ public class GameManager : MonoBehaviour
                     m_lifebar1P.value = m_Playerlife[0];
                 }
                 break;
+
             case "1PO1":
                 if(m_Playerlife[1] > 0)
                 {
@@ -341,6 +336,7 @@ public class GameManager : MonoBehaviour
                     m_optionLifebar1p1.value = m_Playerlife[1];
                 }
                 break;
+
             case "1PO2":
                 if (m_Playerlife[2] > 0)
                 {
@@ -362,6 +358,7 @@ public class GameManager : MonoBehaviour
                     m_optionLifebar1p2.value = m_Playerlife[2];
                 }
                 break;
+
             case "1PO3":
                 if (m_Playerlife[3] > 0)
                 {
@@ -383,6 +380,7 @@ public class GameManager : MonoBehaviour
                     m_optionLifebar1p3.value = m_Playerlife[3];
                 }
                 break;
+
             case "1PO4":
                 if (m_Playerlife[4] > 0)
                 {
@@ -404,6 +402,7 @@ public class GameManager : MonoBehaviour
                     m_optionLifebar1p4.value = m_Playerlife[4];
                 }
                 break;
+
             case "2P":
                 if (m_Playerlife[5] > 0)
                 {
@@ -425,6 +424,7 @@ public class GameManager : MonoBehaviour
                     m_lifebar2P.value = m_Playerlife[5];
                 }
                 break;
+
             case "2PO1":
                 if (m_Playerlife[6] > 0)
                 {
@@ -446,6 +446,7 @@ public class GameManager : MonoBehaviour
                     m_optionLifebar2p1.value = m_Playerlife[6];
                 }
                 break;
+
             case "2PO2":
                 if (m_Playerlife[7] > 0)
                 {
@@ -467,6 +468,7 @@ public class GameManager : MonoBehaviour
                     m_optionLifebar2p2.value = m_Playerlife[7];
                 }
                 break;
+
             case "2PO3":
                 if (m_Playerlife[8] > 0)
                 {
@@ -488,6 +490,7 @@ public class GameManager : MonoBehaviour
                     m_optionLifebar2p3.value = m_Playerlife[8];
                 }
                 break;
+
             case "2PO4":
                 if (m_Playerlife[9] > 0)
                 {
@@ -510,9 +513,14 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             default:
+                Debug.Log("何かがおかしい");
                 break;
         }
     }
+
+    /// <summary>
+    /// クールタイムの再設定
+    /// </summary>
     public void SetCool(int i)
     {
         if (i == 1)
@@ -529,7 +537,11 @@ public class GameManager : MonoBehaviour
             m_CT[5].minValue = laserDelay / -dNam2;
         }
     }
-    public void GameStart()
+
+    /// <summary>
+    /// ゲーム開始前
+    /// </summary>
+    public void GameStartBefore()
     {
         if (!Ready1P)
         {
@@ -541,6 +553,10 @@ public class GameManager : MonoBehaviour
         }
         
     }
+
+    /// <summary>
+    /// ゲーム開始のカウントダウン
+    /// </summary>
     void Count()
     {
         
@@ -564,14 +580,22 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// シーンのリロード
+    /// </summary>
     public void SceneReload()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public void Titleload()
+
+    /// <summary>
+    /// タイトルへ
+    /// </summary>
+    public void TitleLoad()
     {
         SceneManager.LoadScene("TitleScene");
     }
+
     /// <summary>
     /// ゲームオーバー時に呼び出す
     /// </summary>

@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     bool beingHit = false;
     SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
+
     void Start()
     {
         m_rb2d = GetComponent<Rigidbody2D>();
@@ -173,27 +174,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        if (nextObject)
-        {
 
-            if (pos[0] != transform.position)
-            {
-                moving = true;
-                //if (lasernow)
-                //{
-                //    moving = false;
-                //}
-                optionController.Move(pos[m_delay], moving);
-
-                Buffer();
-            }
-            else
-            {
-                moving = false;
-                optionController.Move(pos[m_delay], moving);
-            }
-
-        }
 
         fireTimer += Time.deltaTime;
         shotTimer += Time.deltaTime;
@@ -274,6 +255,27 @@ public class PlayerController : MonoBehaviour
         if (gameStart)
         {
             GameStart();
+        }
+        if (nextObject)
+        {
+
+            if (pos[0] != transform.position)
+            {
+                moving = true;
+                //if (lasernow)
+                //{
+                //    moving = false;
+                //}
+                optionController.Move(pos[m_delay], moving);
+
+                Buffer();
+            }
+            else
+            {
+                moving = false;
+                optionController.Move(pos[m_delay], moving);
+            }
+
         }
     }
     void Fire()
@@ -474,7 +476,7 @@ public class PlayerController : MonoBehaviour
     {
         if (firstPlayer)
         {
-            if (collision.gameObject.tag == "2Plaser")
+            if (collision.gameObject.tag == "laser")
             {
                 LaserHit(1);
                 //Debug.Log("l");
@@ -507,7 +509,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 gameStart = false;
-                gameManager.GameStart();
+                gameManager.GameStartBefore();
             }
         }
         else
@@ -519,7 +521,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 gameStart = false;
-                gameManager.GameStart();
+                gameManager.GameStartBefore();
             }
         }
     }

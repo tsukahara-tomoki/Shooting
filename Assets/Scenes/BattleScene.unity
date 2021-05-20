@@ -3305,6 +3305,10 @@ PrefabInstance:
       propertyPath: shotDelay
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1225285085, guid: ea0a970b07672a44899fe36456457d07, type: 3}
+      propertyPath: laserDelay
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1877680441847370, guid: ea0a970b07672a44899fe36456457d07, type: 3}
       propertyPath: m_Name
       value: 2Player
@@ -6783,6 +6787,10 @@ PrefabInstance:
     - target: {fileID: 2102920465, guid: 2be3fc74061214a4b920218166dd6b38, type: 3}
       propertyPath: shotDelay
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102920465, guid: 2be3fc74061214a4b920218166dd6b38, type: 3}
+      propertyPath: laserDelay
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6112703199406894602, guid: 2be3fc74061214a4b920218166dd6b38,
         type: 3}

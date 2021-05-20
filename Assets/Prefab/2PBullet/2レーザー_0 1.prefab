@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 4000122745479592816}
   m_Layer: 10
   m_Name: "1\u30EC\u30FC\u30B6\u30FC_0"
-  m_TagString: 2Plaser
+  m_TagString: laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
