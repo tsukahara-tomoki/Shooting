@@ -17,23 +17,26 @@ public class OptionController : MonoBehaviour
     [SerializeField] GameObject nextObject;
     Rigidbody2D m_rb2d;
     [SerializeField] int m_delay = 30;
-    bool  moving = true;
+    bool moving = true;
     float fireTimer = 0;
-    bool fireNow = false;
+    bool fireNow = true;
     float shotTimer = 0;
-    bool shotNow = false;
+    bool shotNow = true;
     float laserTimer = 0;
-    bool laserNow = false;
+    bool laserNow = true;
     [SerializeField] float fireDelay;
     [SerializeField] float shotDelay;
     [SerializeField] float laserDelay;
     [SerializeField] bool firstPlayer;
+    float beingHitTimer = 0;
+    bool beingHit = false;
     /// <summary>爆発エフェクト</summary>
     [SerializeField] GameObject m_explosionEffect;
     int i = 0;
     OptionController optionController;
     bool dead = false;
     GameManager gameManager;
+    SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,87 +47,99 @@ public class OptionController : MonoBehaviour
         GameObject gameManagerObject = GameObject.Find("GameManager");
         gameManager = gameManagerObject.GetComponent<GameManager>();
         m_rb2d = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         if (nextObject) Initialize();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (firstPlayer)
+        if (gameManager.start)
         {
-            if (Input.GetButton("Fire1"))
+            if (firstPlayer)
             {
-                //if (this.GetComponentsInChildren<BulletController>().Length < m_bulletLimit)    // 画面内の弾数を制限する
+                if (Input.GetButton("Fire1"))
                 {
-                    if (!fireNow)
+                    //if (this.GetComponentsInChildren<BulletController>().Length < m_bulletLimit)    // 画面内の弾数を制限する
                     {
-                        Fire();
-                        fireNow = true;
-                        fireTimer = 0f;   // タイマーをリセットする
+                        if (!fireNow)
+                        {
+                            Fire();
+                            fireNow = true;
+                            fireTimer = 0f;   // タイマーをリセットする
+                        }
+                        //Fire();
                     }
-                    //Fire();
+                }
+                if (Input.GetButton("Fire2"))
+                {
+                    if (!shotNow)
+                    {
+                        Shot();
+                        shotNow = true;
+                        shotTimer = 0f;   // タイマーをリセットする
+                    }
+
+                }
+                if (Input.GetButton("Fire3"))
+                {
+                    if (!laserNow)
+                    {
+                        Laser();
+                        laserNow = true;
+                        laserTimer = 0f;   // タイマーをリセットする
+                    }
+
                 }
             }
-            if (Input.GetButton("Fire2"))
+            else
             {
-                if (!shotNow)
+                if (Input.GetButton("2PFire1"))
                 {
-                    Shot();
-                    shotNow = true;
-                    shotTimer = 0f;   // タイマーをリセットする
+                    {
+                        if (!fireNow)
+                        {
+                            Fire();
+                            fireNow = true;
+                            fireTimer = 0f;   // タイマーをリセットする
+                        }
+                        //Fire();
+                    }
                 }
-
-            }
-            if (Input.GetButton("Fire3"))
-            {
-                if (!laserNow)
+                if (Input.GetButton("2PFire2"))
                 {
-                    Laser();
-                    laserNow = true;
-                    laserTimer = 0f;   // タイマーをリセットする
-                }
+                    if (!shotNow)
+                    {
+                        Shot();
+                        shotNow = true;
+                        shotTimer = 0f;   // タイマーをリセットする
+                    }
 
+                }
+                if (Input.GetButton("2PFire3"))
+                {
+                    if (!laserNow)
+                    {
+                        Laser();
+                        laserNow = true;
+                        laserTimer = 0f;   // タイマーをリセットする
+                    }
+
+                }
             }
         }
-        else
-        {
-            if (Input.GetButton("2PFire1"))
-            {
-                {
-                    if (!fireNow)
-                    {
-                        Fire();
-                        fireNow = true;
-                        fireTimer = 0f;   // タイマーをリセットする
-                    }
-                    //Fire();
-                }
-            }
-            if (Input.GetButton("2PFire2"))
-            {
-                if (!shotNow)
-                {
-                    Shot();
-                    shotNow = true;
-                    shotTimer = 0f;   // タイマーをリセットする
-                }
-
-            }
-            if (Input.GetButton("2PFire3"))
-            {
-                if (!laserNow)
-                {
-                    Laser();
-                    laserNow = true;
-                    laserTimer = 0f;   // タイマーをリセットする
-                }
-
-            }
-        }
-
         fireTimer += Time.deltaTime;
         shotTimer += Time.deltaTime;
         laserTimer += Time.deltaTime;
+        beingHitTimer += Time.deltaTime;
+        if (beingHit)
+        {
+            if (beingHitTimer > 0.2)
+            {
+                beingHit = false;
+                Thin(1f);
+            }
+        }
         if (firstPlayer)
         {
             if (fireTimer > fireDelay / (float)gameManager.dNam1)    // 待つ
@@ -171,7 +186,7 @@ public class OptionController : MonoBehaviour
             //    OptionController optionController = nextObject.GetComponent<OptionController>();
             //    optionController.Move(pos[1], moving);
             //}}
-        
+
             if (pos[0] != transform.position)
             {
                 moving = true;
@@ -188,7 +203,7 @@ public class OptionController : MonoBehaviour
     }
     void Fire()
     {
-        if (dead){ return; }
+        if (dead) { return; }
         if (m_bulletPrefab) // m_bulletPrefab にプレハブが設定されている時
         {
             GameObject go = Instantiate(m_bulletPrefab, m_muzzle[0].position, m_bulletPrefab.transform.rotation);  // インスペクターから設定した m_bulletPrefab をインスタンス化する
@@ -211,6 +226,7 @@ public class OptionController : MonoBehaviour
     }
     void Laser()
     {
+        if (dead) { return; }
         GameObject go;
         if (m_laserPrefab) // m_bulletPrefab にプレハブが設定されている時
         {
@@ -257,25 +273,25 @@ public class OptionController : MonoBehaviour
         float v = pos1[1];
         //if (!lasernow)
         //{
-            if (moving)
-            {
+        if (moving)
+        {
 
             //transform.position = pos;
 
-                //Debug.Log("うごく");
-                Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
-                //m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
-                m_rb2d.position = pos;
-                //Debug.Log(pos);
-            }
-            else
-            {
-                h = 0;
-                v = 0;
-                Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
-                m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
+            //Debug.Log("うごく");
+            Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
+                                                        //m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
+            m_rb2d.position = pos;
+            //Debug.Log(pos);
+        }
+        else
+        {
+            h = 0;
+            v = 0;
+            Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
+            m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
 
-            }
+        }
     }
     //else
     //{
@@ -389,17 +405,23 @@ public class OptionController : MonoBehaviour
         if (firstPlayer)
         {
             gameManager.dNam1 *= 2;
+            gameManager.SetCool(1);
         }
         else
         {
             gameManager.dNam2 *= 2;
+            gameManager.SetCool(2);
         }
-        
+
         dead = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (dead) { return; }
+        if (beingHit) return;
+        beingHit = true;
+        beingHitTimer = 0;
+        Thin(0.5f);
         if (firstPlayer)
         {
             if (collision.gameObject.tag == "2Pbullet")
@@ -440,9 +462,12 @@ public class OptionController : MonoBehaviour
             if (collision.gameObject.tag == "laser")
             {
                 LaserHit(this.gameObject.name);
-                Debug.Log("l");
             }
         }
 
+    }
+    void Thin(float f)
+    {
+        spriteRenderer.color = new Color(1, 1, 1, f);
     }
 }

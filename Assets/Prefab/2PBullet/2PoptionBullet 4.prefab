@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 50563727001569514}
   - component: {fileID: 58527976229750754}
   - component: {fileID: 8713412128376062802}
-  m_Layer: 14
+  m_Layer: 10
   m_Name: 2PoptionBullet 4
   m_TagString: 2PsubBullet
   m_Icon: {fileID: 0}

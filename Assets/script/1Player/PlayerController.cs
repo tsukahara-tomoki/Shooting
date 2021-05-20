@@ -22,30 +22,42 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject nextObject;
     AudioSource m_audio;
     Rigidbody2D m_rb2d;
+    float m_timer = 0;
     [SerializeField] float fireDelay;
     [SerializeField] float shotDelay;
     [SerializeField] float laserDelay;
     float fireTimer = 0;
-    bool fireNow = false;
+    bool fireNow = true;
     float shotTimer = 0;
-    bool shotNow = false;
+    bool shotNow = true;
     float laserTimer = 0;
-    bool laserNow = false;
+    bool laserNow = true;
     [SerializeField] bool firstPlayer;
     int j = 0;
     OptionController optionController;
     [SerializeField] int m_delay = 30;
     /// <summary>爆発エフェクト</summary>
     [SerializeField] GameObject m_explosionEffect;
-    bool dead = false;
+    public　bool dead = false;
     GameManager gameManager;
     [SerializeField] GameObject winnerText;
-
+    [SerializeField] Slider CT1;
+    [SerializeField] Slider CT2;
+    [SerializeField] Slider CT3;
+    [SerializeField] Slider CT4;
+    [SerializeField] Slider CT5;
+    [SerializeField] Slider CT6;
+    bool gameStart = true;
+    Vector2 dir;
+    float beingHitTimer = 0;
+    bool beingHit = false;
+    SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
         m_rb2d = GetComponent<Rigidbody2D>();
         m_audio = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         if (nextObject)
         {
             optionController = nextObject.GetComponent<OptionController>();
@@ -58,12 +70,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 dir;
+        if (dead) return;
         float h;
         float v;
-        // 自機を移動させる]
-        //if (!lasernow)
+        if (gameStart)
         {
+            //GameStart();
+        }
+        // 自機を移動させる]
+        //if (!lasernow)]
+        else
+        {
+            
             if (firstPlayer)
             {
                 h = Input.GetAxisRaw("Horizontal1P");   // 垂直方向の入力を取得する
@@ -78,118 +96,145 @@ public class PlayerController : MonoBehaviour
                 dir = new Vector2(-h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction) 
                 m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
             }
-            // 左クリックまたは左 Ctrl で弾を発射する（単発）
-            if (firstPlayer)
+            if (gameManager.start)
             {
-                if (Input.GetButton("Fire1"))
+                // 左クリックまたは左 Ctrl で弾を発射する（単発）
+                if (firstPlayer)
                 {
-                    //if (this.GetComponentsInChildren<BulletController>().Length < m_bulletLimit)    // 画面内の弾数を制限する
+                    if (Input.GetButton("Fire1"))
                     {
-                        if (!fireNow)
+                        //if (this.GetComponentsInChildren<BulletController>().Length < m_bulletLimit)    // 画面内の弾数を制限する
                         {
-                            Fire();
-                            fireNow = true;
-                            fireTimer = 0f;   // タイマーをリセットする
+                            if (!fireNow)
+                            {
+                                Fire();
+                                fireNow = true;
+                                fireTimer = 0f;   // タイマーをリセットする
+                            }
+                            //Fire();
                         }
-                        //Fire();
                     }
-                }
-                if (Input.GetButton("Fire2"))
-                {
-                    if (!shotNow)
+                    if (Input.GetButton("Fire2"))
                     {
-                        Shot();
-                        shotNow = true;
-                        shotTimer = 0f;   // タイマーをリセットする
-                    }
-
-                }
-                if (Input.GetButton("Fire3"))
-                {
-                    if (!laserNow)
-                    {
-                        Laser();
-                        laserNow = true;
-                        laserTimer = 0f;   // タイマーをリセットする
-                    }
-
-                }
-            }
-            else
-            {
-                if (Input.GetButton("2PFire1"))
-                {
-                    { 
-                        if (!fireNow)
+                        if (!shotNow)
                         {
-                            Fire();
-                            fireNow = true;
-                            fireTimer = 0f;   // タイマーをリセットする
+                            Shot();
+                            shotNow = true;
+                            shotTimer = 0f;   // タイマーをリセットする
                         }
-                        //Fire();
+
                     }
-                }
-                if (Input.GetButton("2PFire2"))
-                {
-                    if (!shotNow)
+                    if (Input.GetButton("Fire3"))
                     {
-                        Shot();
-                        shotNow = true;
-                        shotTimer = 0f;   // タイマーをリセットする
+                        if (!laserNow)
+                        {
+                            Laser();
+                            laserNow = true;
+                            laserTimer = 0f;   // タイマーをリセットする
+                        }
+
                     }
 
-                }
-                if (Input.GetButton("2PFire3"))
-                {
-                    if (!laserNow)
-                    {
-                        Laser();
-                        laserNow = true;
-                        laserTimer = 0f;   // タイマーをリセットする
-                    }
-
-                }
-            }
-            
-            if (nextObject)
-            {
-
-                if (pos[0] != transform.position)
-                {
-                    moving = true;
-                    //if (lasernow)
-                    //{
-                    //    moving = false;
-                    //}
-                    optionController.Move(pos[m_delay], moving);
-
-                    Buffer();
                 }
                 else
                 {
-                moving = false;
-                optionController.Move(pos[m_delay], moving);
-                }
+                    if (Input.GetButton("2PFire1"))
+                    {
+                        {
+                            if (!fireNow)
+                            {
+                                Fire();
+                                fireNow = true;
+                                fireTimer = 0f;   // タイマーをリセットする
+                            }
+                            //Fire();
+                        }
+                    }
+                    if (Input.GetButton("2PFire2"))
+                    {
+                        if (!shotNow)
+                        {
+                            Shot();
+                            shotNow = true;
+                            shotTimer = 0f;   // タイマーをリセットする
+                        }
 
+                    }
+                    if (Input.GetButton("2PFire3"))
+                    {
+                        if (!laserNow)
+                        {
+                            Laser();
+                            laserNow = true;
+                            laserTimer = 0f;   // タイマーをリセットする
+                        }
+
+                    }
+                }
             }
         }
+        if (nextObject)
+        {
+
+            if (pos[0] != transform.position)
+            {
+                moving = true;
+                //if (lasernow)
+                //{
+                //    moving = false;
+                //}
+                optionController.Move(pos[m_delay], moving);
+
+                Buffer();
+            }
+            else
+            {
+                moving = false;
+                optionController.Move(pos[m_delay], moving);
+            }
+
+        }
+
         fireTimer += Time.deltaTime;
         shotTimer += Time.deltaTime;
         laserTimer += Time.deltaTime;
+        beingHitTimer += Time.deltaTime;
+        if (beingHit)
+        {
+            if (beingHitTimer > 0.2)
+            {
+                beingHit = false;
+                Thin(1f);
+            }
+        }
         if (firstPlayer)
         {
             if (fireTimer > fireDelay / (float)gameManager.dNam1)    // 待つ
             {
                 fireNow = false;
-                
+                Ctime1(1, fireDelay / (float)gameManager.dNam1);
+            }
+            else
+            {
+                Ctime1(1, fireTimer);
             }
             if (shotTimer > shotDelay/gameManager.dNam1)    // 待つ
             {
                 shotNow = false;
+                Ctime1(2, shotDelay / (float)gameManager.dNam1);
+            }
+            else
+            {
+                Ctime1(2, shotTimer);
             }
             if (laserTimer > laserDelay / gameManager.dNam1)    // 待つ
             {
                 laserNow = false;
+                Ctime1(3, laserDelay / (float)gameManager.dNam1);
+            }
+            else
+            {
+                Ctime1(3, laserTimer);
             }
         }
         else
@@ -197,17 +242,39 @@ public class PlayerController : MonoBehaviour
             if (fireTimer > fireDelay/ gameManager.dNam2)    // 待つ
             {
                 fireNow = false;
+                Ctime1(4, fireDelay / (float)gameManager.dNam2);
+            }
+            else
+            {
+                Ctime1(4, fireTimer);
             }
             if (shotTimer > shotDelay/ gameManager.dNam2)    // 待つ
             {
                 shotNow = false;
+                Ctime1(5, shotDelay / (float)gameManager.dNam2);
+            }
+            else
+            {
+                Ctime1(5, shotTimer);
             }
             if (laserTimer > laserDelay / gameManager.dNam2)    // 待つ
             {
                 laserNow = false;
+                Ctime1(6, laserDelay / (float)gameManager.dNam2);
+            }
+            else
+            {
+                Ctime1(6, laserTimer);
             }
         }
 
+    }
+    private void FixedUpdate()
+    {
+        if (gameStart)
+        {
+            GameStart();
+        }
     }
     void Fire()
     {
@@ -272,7 +339,7 @@ public class PlayerController : MonoBehaviour
     }
     void Hit(int i)
     {
-
+        if (dead) return;
         // GameManager にやられたことを知らせる
         GameObject gameManagerObject = GameObject.Find("GameManager");
         if (gameManagerObject)
@@ -289,7 +356,6 @@ public class PlayerController : MonoBehaviour
                         break;
                     case 2:
                         gameManager.PlayerHit2P(5);
-                        Debug.Log("は?");
                         break;
                     default:
                         break;
@@ -301,7 +367,6 @@ public class PlayerController : MonoBehaviour
     }
     void LaserHit(int i)
     {
-        Debug.Log("l");
         GameObject gameManagerObject = GameObject.Find("GameManager");
         if (gameManagerObject)
         {
@@ -330,7 +395,7 @@ public class PlayerController : MonoBehaviour
     {
         GetComponent<Renderer>().material.color = new Color32(0, 0, 0, 0);
         // 爆発エフェクトを置く
-
+        dead = true;
         if (m_explosionEffect)
         {
             Instantiate(m_explosionEffect, this.transform.position, Quaternion.identity);
@@ -347,8 +412,40 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    void Ctime1(int i, float f)
+    {
+        switch (i)
+        {
+            case 1:
+                CT1.value = f * -1;
+                break;
+            case 2:
+                CT2.value = f * -1;
+                break;
+            case 3:
+                CT3.value = f * -1;
+                break;
+            case 4:
+                CT4.value = f * -1;
+                break;
+            case 5:
+                CT5.value = f * -1;
+                break;
+            case 6:
+                CT6.value = f * -1;
+                break;
+            default:
+                break;
+        }
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (beingHit) return;
+        beingHit = true;
+        beingHitTimer = 0;
+        Thin(0.5f);
         if (firstPlayer)
         {
             if (collision.gameObject.tag == "2Pbullet")
@@ -358,7 +455,6 @@ public class PlayerController : MonoBehaviour
             if (collision.gameObject.tag == "2PsubBullet")
             {
                 Hit(1);
-                Debug.Log("???");
             }
             
         }
@@ -381,7 +477,7 @@ public class PlayerController : MonoBehaviour
             if (collision.gameObject.tag == "2Plaser")
             {
                 LaserHit(1);
-                Debug.Log("l");
+                //Debug.Log("l");
             }
 
         }
@@ -390,10 +486,42 @@ public class PlayerController : MonoBehaviour
             if (collision.gameObject.tag == "laser")
             {
                 LaserHit(2);
-                Debug.Log("l");
+                //Debug.Log("l");
             }
         }
         
+    }
+    void Thin(float f)
+    {
+        spriteRenderer.color = new Color(1, 1, 1, f);
+    }
+    void GameStart()
+    {
+
+        if (firstPlayer)
+        {
+            if (this.gameObject.transform.position.x > -4.5)
+            {
+                gameObject.transform.position -= new Vector3(0.15f,0);
+            }
+            else
+            {
+                gameStart = false;
+                gameManager.GameStart();
+            }
+        }
+        else
+        {
+            if (this.gameObject.transform.position.x < 4.5)
+            {
+                gameObject.transform.position += new Vector3(0.15f, 0);
+            }
+            else
+            {
+                gameStart = false;
+                gameManager.GameStart();
+            }
+        }
     }
 }
 
