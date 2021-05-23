@@ -1842,7 +1842,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1920472642}
-        m_MethodName: Titleload
+        m_MethodName: TitleLoad
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3309,6 +3309,18 @@ PrefabInstance:
       propertyPath: laserDelay
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1225285085, guid: ea0a970b07672a44899fe36456457d07, type: 3}
+      propertyPath: m_CoolBar.Array.data[0]
+      value: 
+      objectReference: {fileID: 688538893}
+    - target: {fileID: 1225285085, guid: ea0a970b07672a44899fe36456457d07, type: 3}
+      propertyPath: m_CoolBar.Array.data[1]
+      value: 
+      objectReference: {fileID: 209191991}
+    - target: {fileID: 1225285085, guid: ea0a970b07672a44899fe36456457d07, type: 3}
+      propertyPath: m_CoolBar.Array.data[2]
+      value: 
+      objectReference: {fileID: 1271479773}
     - target: {fileID: 1877680441847370, guid: ea0a970b07672a44899fe36456457d07, type: 3}
       propertyPath: m_Name
       value: 2Player
@@ -6687,6 +6699,18 @@ PrefabInstance:
       propertyPath: laserDelay
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 959518391, guid: d2d6816f42574f04abdcf3057ccf4f24, type: 3}
+      propertyPath: m_CoolBar.Array.data[0]
+      value: 
+      objectReference: {fileID: 394394957}
+    - target: {fileID: 959518391, guid: d2d6816f42574f04abdcf3057ccf4f24, type: 3}
+      propertyPath: m_CoolBar.Array.data[1]
+      value: 
+      objectReference: {fileID: 1228115202}
+    - target: {fileID: 959518391, guid: d2d6816f42574f04abdcf3057ccf4f24, type: 3}
+      propertyPath: m_CoolBar.Array.data[2]
+      value: 
+      objectReference: {fileID: 1240791142}
     - target: {fileID: 1041965140668232, guid: d2d6816f42574f04abdcf3057ccf4f24, type: 3}
       propertyPath: m_Name
       value: Player 1

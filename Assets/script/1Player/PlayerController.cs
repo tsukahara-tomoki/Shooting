@@ -41,12 +41,13 @@ public class PlayerController : MonoBehaviour
     public　bool dead = false;
     GameManager gameManager;
     [SerializeField] GameObject winnerText;
-    [SerializeField] Slider CT1;
-    [SerializeField] Slider CT2;
-    [SerializeField] Slider CT3;
-    [SerializeField] Slider CT4;
-    [SerializeField] Slider CT5;
-    [SerializeField] Slider CT6;
+    [SerializeField] Slider[] m_CoolBar = new Slider[3];
+    //[SerializeField] Slider CT1;
+    //[SerializeField] Slider CT2;
+    //[SerializeField] Slider CT3;
+    //[SerializeField] Slider CT4;
+    //[SerializeField] Slider CT5;
+    //[SerializeField] Slider CT6;
     bool gameStart = true;
     Vector2 dir;
     float beingHitTimer = 0;
@@ -74,13 +75,9 @@ public class PlayerController : MonoBehaviour
         if (dead) return;
         float h;
         float v;
-        if (gameStart)
-        {
-            //GameStart();
-        }
+
         // 自機を移動させる]
         //if (!lasernow)]
-        else
         {
             
             if (firstPlayer)
@@ -220,32 +217,32 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (fireTimer > fireDelay/ gameManager.dNam2)    // 待つ
+            if (fireTimer > fireDelay / gameManager.dNam2)    // 待つ
             {
                 fireNow = false;
-                Ctime1(4, fireDelay / (float)gameManager.dNam2);
+                Ctime1(1, fireDelay / (float)gameManager.dNam2);
             }
             else
             {
-                Ctime1(4, fireTimer);
+                Ctime1(1, fireTimer);
             }
-            if (shotTimer > shotDelay/ gameManager.dNam2)    // 待つ
+            if (shotTimer > shotDelay / gameManager.dNam2)    // 待つ
             {
                 shotNow = false;
-                Ctime1(5, shotDelay / (float)gameManager.dNam2);
+                Ctime1(2, shotDelay / (float)gameManager.dNam2);
             }
             else
             {
-                Ctime1(5, shotTimer);
+                Ctime1(2, shotTimer);
             }
             if (laserTimer > laserDelay / gameManager.dNam2)    // 待つ
             {
                 laserNow = false;
-                Ctime1(6, laserDelay / (float)gameManager.dNam2);
+                Ctime1(3, laserDelay / (float)gameManager.dNam2);
             }
             else
             {
-                Ctime1(6, laserTimer);
+                Ctime1(3, laserTimer);
             }
         }
 
@@ -339,7 +336,7 @@ public class PlayerController : MonoBehaviour
         }
         pos[0] = transform.position;
     }
-    void Hit(int i)
+    void Hit(int i ,bool b)
     {
         if (dead) return;
         // GameManager にやられたことを知らせる
@@ -354,10 +351,25 @@ public class PlayerController : MonoBehaviour
                 switch (i)
                 {
                     case 1:
-                        gameManager.PlayerHit1P(5);
+                        if (b)
+                        {
+                            gameManager.PlayerHit1P(10);
+                        }
+                        else
+                        {
+                            gameManager.PlayerHit1P(7);
+                        }
                         break;
                     case 2:
-                        gameManager.PlayerHit2P(5);
+                        if (b)
+                        {
+                            gameManager.PlayerHit2P(10);
+                        }
+                        else
+                        {
+                            gameManager.PlayerHit2P(7);
+                        }
+                        
                         break;
                     default:
                         break;
@@ -419,23 +431,23 @@ public class PlayerController : MonoBehaviour
         switch (i)
         {
             case 1:
-                CT1.value = f * -1;
+                m_CoolBar[0].value = f * -1;
                 break;
             case 2:
-                CT2.value = f * -1;
+                m_CoolBar[1].value = f * -1;
                 break;
             case 3:
-                CT3.value = f * -1;
+                m_CoolBar[2].value = f * -1;
                 break;
-            case 4:
-                CT4.value = f * -1;
-                break;
-            case 5:
-                CT5.value = f * -1;
-                break;
-            case 6:
-                CT6.value = f * -1;
-                break;
+            //case 4:
+            //    CT4.value = f * -1;
+            //    break;
+            //case 5:
+            //    CT5.value = f * -1;
+            //    break;
+            //case 6:
+            //    CT6.value = f * -1;
+            //    break;
             default:
                 break;
         }
@@ -452,11 +464,11 @@ public class PlayerController : MonoBehaviour
         {
             if (collision.gameObject.tag == "2Pbullet")
             {
-                Hit(1);
+                Hit(1 ,true);
             }
             if (collision.gameObject.tag == "2PsubBullet")
             {
-                Hit(1);
+                Hit(1 ,false);
             }
             
         }
@@ -464,11 +476,11 @@ public class PlayerController : MonoBehaviour
         {
             if (collision.gameObject.tag == "1Pbullet")
             {
-                Hit(2);
+                Hit(2, true);
             }
             if (collision.gameObject.tag == "1PsubBullet")
             {
-                Hit(2);
+                Hit(2, false);
             }
         }
     }

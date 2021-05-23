@@ -527,14 +527,14 @@ public class GameManager : MonoBehaviour
         {
             m_CT[0].minValue = fireDelay / -dNam1;
             m_CT[1].minValue = shotDelay / -dNam1;
-            m_CT[2].minValue = laserDelay / -dNam1;
+            m_CT[2].minValue = laserDelay / -dNam1 /*+ 5*/;
 
         }
         else
         {
             m_CT[3].minValue = fireDelay / -dNam2;
             m_CT[4].minValue = shotDelay / -dNam2;
-            m_CT[5].minValue = laserDelay / -dNam2;
+            m_CT[5].minValue = laserDelay / -dNam2/* + 5*/;
         }
     }
 

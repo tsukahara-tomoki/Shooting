@@ -171,6 +171,10 @@ public class OptionController : MonoBehaviour
                 laserNow = false;
             }
         }
+        
+    }
+    private void FixedUpdate()
+    {
         if (nextObject)
         {
             //if (pos[0] != transform.position)
@@ -300,7 +304,7 @@ public class OptionController : MonoBehaviour
     //    Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
     //    m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
     //}
-    void Hit(string name)
+    void Hit(string name, string bulletName)
     {
 
         // GameManager にやられたことを知らせる
@@ -310,41 +314,77 @@ public class OptionController : MonoBehaviour
             GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
             if (gameManager)
             {
-                switch (name)
+                if (bulletName == "2Pbullet" || bulletName == "1Pbullet")
                 {
-                    case "Option":
-                        gameManager.OptionHit1P1(5);
-                        break;
-                    case "Option (1)":
-                        gameManager.OptionHit1P2(5);
-                        break;
-                    case "Option (2)":
-                        gameManager.OptionHit1P3(5);
-                        break;
-                    case "Option (3)":
-                        gameManager.OptionHit1P4(5);
-                        break;
-                    case "Option2P (1)":
-                        gameManager.OptionHit2P1(5);
-                        break;
-                    case "Option2P (2)":
-                        gameManager.OptionHit2P2(5);
-                        break;
-                    case "Option2P (3)":
-                        gameManager.OptionHit2P3(5);
-                        break;
-                    case "Option2P (4)":
-                        gameManager.OptionHit2P4(5);
-                        break;
-                    default:
-                        break;
+                    switch (name)
+                    {
+                        case "Option":
+                            gameManager.OptionHit1P1(10);
+                            break;
+                        case "Option (1)":
+                            gameManager.OptionHit1P2(10);
+                            break;
+                        case "Option (2)":
+                            gameManager.OptionHit1P3(10);
+                            break;
+                        case "Option (3)":
+                            gameManager.OptionHit1P4(10);
+                            break;
+                        case "Option2P (1)":
+                            gameManager.OptionHit2P1(10);
+                            break;
+                        case "Option2P (2)":
+                            gameManager.OptionHit2P2(10);
+                            break;
+                        case "Option2P (3)":
+                            gameManager.OptionHit2P3(10);
+                            break;
+                        case "Option2P (4)":
+                            gameManager.OptionHit2P4(10);
+                            break;
+                        default:
+                            break;
+                    }
                 }
+                else
+                {
+                    switch (name)
+                    {
+                        case "Option":
+                            gameManager.OptionHit1P1(7);
+                            break;
+                        case "Option (1)":
+                            gameManager.OptionHit1P2(7);
+                            break;
+                        case "Option (2)":
+                            gameManager.OptionHit1P3(7);
+                            break;
+                        case "Option (3)":
+                            gameManager.OptionHit1P4(7);
+                            break;
+                        case "Option2P (1)":
+                            gameManager.OptionHit2P1(7);
+                            break;
+                        case "Option2P (2)":
+                            gameManager.OptionHit2P2(7);
+                            break;
+                        case "Option2P (3)":
+                            gameManager.OptionHit2P3(7);
+                            break;
+                        case "Option2P (4)":
+                            gameManager.OptionHit2P4(7);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                
 
 
             }
         }
     }
-    void LaserHit(string name)
+    void LaserHit(string name )
     {
 
         // GameManager にやられたことを知らせる
@@ -426,22 +466,22 @@ public class OptionController : MonoBehaviour
         {
             if (collision.gameObject.tag == "2Pbullet")
             {
-                Hit(this.gameObject.name);
+                Hit(this.gameObject.name, collision.gameObject.tag);
             }
             if (collision.gameObject.tag == "2PsubBullet")
             {
-                Hit(this.gameObject.name);
+                Hit(this.gameObject.name, collision.gameObject.tag);
             }
         }
         else
         {
             if (collision.gameObject.tag == "1Pbullet")
             {
-                Hit(this.gameObject.name);
+                Hit(this.gameObject.name, collision.gameObject.tag);
             }
             if (collision.gameObject.tag == "1PsubBullet")
             {
-                Hit(this.gameObject.name);
+                Hit(this.gameObject.name, collision.gameObject.tag);
             }
         }
     }

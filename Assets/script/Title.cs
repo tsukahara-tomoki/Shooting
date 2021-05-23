@@ -14,6 +14,10 @@ public class Title : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButton("start"))
+        {
+            SceneManager.LoadScene("BattleScene");
+        }
         //if (Input.GetKey("return"))
         //{
         //    SceneManager.LoadScene("BattleScene");
