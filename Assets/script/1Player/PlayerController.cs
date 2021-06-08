@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
 
         // 自機を移動させる]
         //if (!lasernow)]
+        if (!gameStart)
         {
             
             if (firstPlayer)
@@ -91,8 +92,8 @@ public class PlayerController : MonoBehaviour
             {
                 h = Input.GetAxisRaw("Horizontal2P");   // 垂直方向の入力を取得する
                 v = Input.GetAxisRaw("Vertical2P");// 水平方向の入力を取得する
-                dir = new Vector2(-h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction) 
-                m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
+                dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction) 
+                m_rb2d.velocity = dir * -m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
             }
             if (gameManager.start)
             {
