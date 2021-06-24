@@ -37,6 +37,10 @@ public class OptionController : MonoBehaviour
     bool dead = false;
     GameManager gameManager;
     SpriteRenderer spriteRenderer;
+    /// <summary>
+    /// 追従パターンを変える
+    /// </summary>
+    static int movePattern = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -272,30 +276,67 @@ public class OptionController : MonoBehaviour
     }
     public void Move(Vector3 pos, bool moving)
     {
-        Vector3 pos1 = pos - transform.position;
+        Vector2 pos1 = pos - transform.position;
         float h = pos1[0];
         float v = pos1[1];
         //if (!lasernow)
         //{
-        if (moving)
+        switch (movePattern)
         {
+            //パターン0 position
+            case 0:
+                if (moving)
+                {
+                    Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
+                    m_rb2d.position = pos;                      //○○フレーム前の場所に直接移動
+                }
+                else
+                {
 
-            //transform.position = pos;
+                    m_rb2d.velocity = new Vector2(0, 0); // その場から動かない
 
-            //Debug.Log("うごく");
-            Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
-                                                        //m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
-            m_rb2d.position = pos;
-            //Debug.Log(pos);
+                }
+                break;
+            //パターン1 velocity
+            case 1:
+                if (moving)
+                {
+                    Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
+                    m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
+
+                }
+                else
+                {
+                    //h = 0;
+                    //v = 0;
+                    //Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
+                    //m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
+                    m_rb2d.velocity = new Vector2(0, 0); // その場から動かない
+                }
+                break;
+
+            default:
+                break;
         }
-        else
-        {
-            h = 0;
-            v = 0;
-            Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
-            m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
+        //if (moving)
+        //{
 
-        }
+        //    //transform.position = pos;
+
+        //    //Debug.Log("うごく");
+        //    Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
+        //    m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
+        //    //m_rb2d.position = pos;
+        //    //Debug.Log(pos);
+        //}
+        //else
+        //{
+        //    h = 0;
+        //    v = 0;
+        //    Vector2 dir = new Vector2(h, v).normalized; // 進行方向の単位ベクトルを作る (dir = direction)*/
+        //    m_rb2d.velocity = dir * m_moveSpeed; // 単位ベクトルにスピードをかけて速度ベクトルにして、それを Rigidbody の速度ベクトルとしてセットする
+
+        //}
     }
     //else
     //{
