@@ -40,7 +40,7 @@ public class OptionController : MonoBehaviour
     /// <summary>
     /// 追従パターンを変える
     /// </summary>
-    static int movePattern = 1;
+    static int movePattern = 0;
     // Start is called before the first frame update
     void Start()
     {
