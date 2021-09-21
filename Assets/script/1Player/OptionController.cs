@@ -30,6 +30,8 @@ public class OptionController : MonoBehaviour
     [SerializeField] bool firstPlayer;
     float beingHitTimer = 0;
     bool beingHit = false;
+    [SerializeField] GameObject mylife;
+
     /// <summary>爆発エフェクト</summary>
     [SerializeField] GameObject m_explosionEffect;
     int i = 0;
@@ -40,7 +42,7 @@ public class OptionController : MonoBehaviour
     /// <summary>
     /// 追従パターンを変える
     /// </summary>
-    static int movePattern = 1;
+    static int movePattern = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +60,7 @@ public class OptionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.start)
+        /*if (gameManager.start)
         {
             if (firstPlayer)
             {
@@ -131,10 +133,10 @@ public class OptionController : MonoBehaviour
 
                 }
             }
-        }
-        fireTimer += Time.deltaTime;
-        shotTimer += Time.deltaTime;
-        laserTimer += Time.deltaTime;
+        }*/
+        //fireTimer += Time.deltaTime;
+        //shotTimer += Time.deltaTime;
+        //laserTimer += Time.deltaTime;
         beingHitTimer += Time.deltaTime;
         if (beingHit)
         {
@@ -144,37 +146,37 @@ public class OptionController : MonoBehaviour
                 Thin(1f);
             }
         }
-        if (firstPlayer)
-        {
-            if (fireTimer > fireDelay / (float)gameManager.dNam1)    // 待つ
-            {
-                fireNow = false;
+    //    if (firstPlayer)
+    //    {
+    //        if (fireTimer > fireDelay / (float)gameManager.dNam1)    // 待つ
+    //        {
+    //            fireNow = false;
 
-            }
-            if (shotTimer > shotDelay / gameManager.dNam1)    // 待つ
-            {
-                shotNow = false;
-            }
-            if (laserTimer > laserDelay / gameManager.dNam1)    // 待つ
-            {
-                laserNow = false;
-            }
-        }
-        else
-        {
-            if (fireTimer > fireDelay / gameManager.dNam2)    // 待つ
-            {
-                fireNow = false;
-            }
-            if (shotTimer > shotDelay / gameManager.dNam2)    // 待つ
-            {
-                shotNow = false;
-            }
-            if (laserTimer > laserDelay / gameManager.dNam2)    // 待つ
-            {
-                laserNow = false;
-            }
-        }
+    //        }
+    //        if (shotTimer > shotDelay / gameManager.dNam1)    // 待つ
+    //        {
+    //            shotNow = false;
+    //        }
+    //        if (laserTimer > laserDelay / gameManager.dNam1)    // 待つ
+    //        {
+    //            laserNow = false;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (fireTimer > fireDelay / gameManager.dNam2)    // 待つ
+    //        {
+    //            fireNow = false;
+    //        }
+    //        if (shotTimer > shotDelay / gameManager.dNam2)    // 待つ
+    //        {
+    //            shotNow = false;
+    //        }
+    //        if (laserTimer > laserDelay / gameManager.dNam2)    // 待つ
+    //        {
+    //            laserNow = false;
+    //        }
+    //    }
         
     }
     private void FixedUpdate()
@@ -207,6 +209,26 @@ public class OptionController : MonoBehaviour
                 optionController.Move(pos[m_delay], moving);
             }
 
+        }
+    }
+    public  void FireCall(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                Fire();
+                break;
+
+            case 1:
+                Shot();
+                break;
+
+            case 2:
+                Laser();
+                break;
+
+            default:
+                break;
         }
     }
     void Fire()
@@ -472,6 +494,7 @@ public class OptionController : MonoBehaviour
     public void PlayerDestroy()
     {
         GetComponent<Renderer>().material.color = new Color32(0, 0, 0, 0);
+        mylife.SetActive(false);
         // 爆発エフェクトを置く
 
         if (m_explosionEffect)

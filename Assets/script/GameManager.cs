@@ -67,11 +67,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] Slider m_optionLifebar2p2;
     [SerializeField] Slider m_optionLifebar2p3;
     [SerializeField] Slider m_optionLifebar2p4;
-
+    [SerializeField] Slider[] m_PlayerlifeTrace = new Slider[10];
     public float dNam1 = 1;
     public float dNam2 = 1;
-    public bool Ready1P;
-    public bool Ready2P;
+    bool Ready1P;
+    bool Ready2P;
 
     [SerializeField] float fireDelay;
     [SerializeField] float shotDelay;
@@ -92,6 +92,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject titleButton;
     public bool start = false;
     int count = 3;
+    ///
+    [SerializeField] Slider[] m_MagicpointBar = new Slider[4];
 
     /// <summary>タイマー</summary>
     float m_timer;
@@ -301,6 +303,7 @@ public class GameManager : MonoBehaviour
                         m_lifebar1PText.text = m_Playerlife[0].ToString();  // 表示を更新する
                     }
                     m_lifebar1P.value = m_Playerlife[0];
+                    m_PlayerlifeTrace[0].value = m_Playerlife[0];
                 }
                 else
                 {
@@ -323,6 +326,7 @@ public class GameManager : MonoBehaviour
                         m_optionLifebar1p1Text.text = m_Playerlife[1].ToString();  // 表示を更新する
                     }
                     m_optionLifebar1p1.value = m_Playerlife[1];
+                    m_PlayerlifeTrace[1].value = m_Playerlife[1];
                 }
                 else
                 {
@@ -345,6 +349,7 @@ public class GameManager : MonoBehaviour
                         m_optionLifebar1p2Text.text = m_Playerlife[2].ToString();  // 表示を更新する
                     }
                     m_optionLifebar1p2.value = m_Playerlife[2];
+                    m_PlayerlifeTrace[2].value = m_Playerlife[2];
                 }
                 else
                 {
@@ -367,6 +372,7 @@ public class GameManager : MonoBehaviour
                         m_optionLifebar1p3Text.text = m_Playerlife[3].ToString();  // 表示を更新する
                     }
                     m_optionLifebar1p3.value = m_Playerlife[3];
+                    m_PlayerlifeTrace[3].value = m_Playerlife[3];
                 }
                 else
                 {
@@ -389,6 +395,7 @@ public class GameManager : MonoBehaviour
                         m_optionLifebar1p4Text.text = m_Playerlife[4].ToString();  // 表示を更新する
                     }
                     m_optionLifebar1p4.value = m_Playerlife[4];
+                    m_PlayerlifeTrace[4].value = m_Playerlife[4];
                 }
                 else
                 {
@@ -411,6 +418,7 @@ public class GameManager : MonoBehaviour
                         m_lifebar2PText.text = m_Playerlife[5].ToString();  // 表示を更新する
                     }
                     m_lifebar2P.value = m_Playerlife[5];
+                    m_PlayerlifeTrace[5].value = m_Playerlife[5];
                 }
                 else
                 {
@@ -433,6 +441,7 @@ public class GameManager : MonoBehaviour
                         m_optionLifebar2p1Text.text = m_Playerlife[6].ToString();  // 表示を更新する
                     }
                     m_optionLifebar2p1.value = m_Playerlife[6];
+                    m_PlayerlifeTrace[6].value = m_Playerlife[6];
                 }
                 else
                 {
@@ -455,6 +464,7 @@ public class GameManager : MonoBehaviour
                         m_optionLifebar2p2Text.text = m_Playerlife[7].ToString();  // 表示を更新する
                     }
                     m_optionLifebar2p2.value = m_Playerlife[7];
+                    m_PlayerlifeTrace[7].value = m_Playerlife[7];
                 }
                 else
                 {
@@ -477,6 +487,7 @@ public class GameManager : MonoBehaviour
                         m_optionLifebar2p3Text.text = m_Playerlife[8].ToString();  // 表示を更新する
                     }
                     m_optionLifebar2p3.value = m_Playerlife[8];
+                    m_PlayerlifeTrace[8].value = m_Playerlife[8];
                 }
                 else
                 {
@@ -499,6 +510,7 @@ public class GameManager : MonoBehaviour
                         m_optionLifebar2p4Text.text = m_Playerlife[9].ToString();  // 表示を更新する
                     }
                     m_optionLifebar2p4.value = m_Playerlife[9];
+                    m_PlayerlifeTrace[9].value = m_Playerlife[9];
                 }
                 else
                 {
