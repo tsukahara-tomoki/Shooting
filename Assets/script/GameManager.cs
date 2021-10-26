@@ -164,6 +164,10 @@ public class GameManager : MonoBehaviour
         {
 
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameOver();
+        }
     }
 
 
@@ -601,7 +605,16 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void GameOver()
     {
-        titleButton.SetActive(true);
-        reloadButton.SetActive(true);
+        if (titleButton.activeSelf)
+        {
+            titleButton.SetActive(false);
+            reloadButton.SetActive(false);
+        }
+        else
+        {
+            titleButton.SetActive(true);
+            reloadButton.SetActive(true);
+        }
+        
     }
 }
