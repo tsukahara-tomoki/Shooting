@@ -10,6 +10,15 @@ TagManager:
   - PlayerBullet
   - laser
   - EnemyBullet
+  - 2P
+  - 1P
+  - 1Pbullet
+  - 2Pbullet
+  - 1PsubBullet
+  - 2PsubBullet
+  - Die
+  - 2Plaser
+  - Limit
   layers:
   - Default
   - TransparentFX
@@ -21,12 +30,12 @@ TagManager:
   - 
   - 1s
   - 1P
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - 2P
+  - Player
+  - option1
+  - option2
+  - option3
+  - option4
   - 
   - 
   - 
