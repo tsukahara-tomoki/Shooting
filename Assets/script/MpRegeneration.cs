@@ -12,6 +12,7 @@ public class MpRegeneration : MonoBehaviour
     [SerializeField] int regenDelay = 5;
     float regenTitle = 0;
     [SerializeField] Text mpText;
+    public int i = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class MpRegeneration : MonoBehaviour
         {
             if (m_Mp < m_sliderG.maxValue)
             {
-                m_Mp += regenDelay;
+                m_Mp += regenDelay * i * 2;
                 m_sliderG.value = ++m_Mp;
                 regenTitle = 0;
                 mpText.text = m_Mp.ToString();

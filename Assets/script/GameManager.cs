@@ -73,11 +73,11 @@ public class GameManager : MonoBehaviour
     bool Ready1P;
     bool Ready2P;
 
-    [SerializeField] float fireDelay;
-    [SerializeField] float shotDelay;
-    [SerializeField] float laserDelay;
+    [SerializeField] public float fireDelay;
+    [SerializeField] public float shotDelay;
+    [SerializeField] public float laserDelay;
 
-    [SerializeField] Slider[] m_CT = new Slider[6];
+    [SerializeField] public Slider[] m_CT = new Slider[6];
     //[SerializeField] Slider CT1;
     //[SerializeField] Slider CT2;
     //[SerializeField] Slider CT3;
@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text countText1;
     [SerializeField] GameObject reloadButton;
     [SerializeField] GameObject titleButton;
+    MpRegeneration[] mpRegeneration = new MpRegeneration[2];
     public bool start = false;
     int count = 3;
     ///
@@ -132,10 +133,12 @@ public class GameManager : MonoBehaviour
         m_optionLifebar2p2.value = m_Playerlife[7];
         m_optionLifebar2p3.value = m_Playerlife[8];
         m_optionLifebar2p4.value = m_Playerlife[9];
-        SetCool(1);
-        SetCool(2);
+        //SetCool(1);
+        //SetCool(2);
         countText = countObject.GetComponent<Text>();
         countText1 = countObject1.GetComponent<Text>();
+        mpRegeneration[0] = GameObject.Find("1PMPbar").GetComponent<MpRegeneration>();
+        mpRegeneration[1] = GameObject.Find("2PMPbar").GetComponent<MpRegeneration>();
 
     }
 
@@ -537,23 +540,22 @@ public class GameManager : MonoBehaviour
     {
         if (i == 1)
         {
-            m_CT[0].minValue = fireDelay / -dNam1;
-            m_CT[1].minValue = shotDelay / -dNam1;
-            m_CT[2].minValue = laserDelay / -dNam1 /*+ 5*/;
-
+            mpRegeneration[0].i++;
+            //m_CT[0].minValue = fireDelay / mpRegeneration[0].i;
+            //m_CT[1].minValue = shotDelay / mpRegeneration[0].i;
         }
         else
         {
-            m_CT[3].minValue = fireDelay / -dNam2;
-            m_CT[4].minValue = shotDelay / -dNam2;
-            m_CT[5].minValue = laserDelay / -dNam2/* + 5*/;
+            mpRegeneration[1].i++;
+            //m_CT[3].minValue -= fireDelay / mpRegeneration[1].i;
+            //m_CT[4].minValue = shotDelay / mpRegeneration[1].i;
         }
     }
 
-    /// <summary>
-    /// ゲーム開始前
-    /// </summary>
-    public void GameStartBefore()
+        /// <summary>
+        /// ゲーム開始前
+        /// </summary>
+        public void GameStartBefore()
     {
         if (!Ready1P)
         {

@@ -508,12 +508,12 @@ public class OptionController : MonoBehaviour
         GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
         if (firstPlayer)
         {
-            gameManager.dNam1 *= 2;
+            //sgameManager.dNam1 *= 2;
             gameManager.SetCool(1);
         }
         else
         {
-            gameManager.dNam2 *= 2;
+            //gameManager.dNam2 *= 2;
             gameManager.SetCool(2);
         }
 
